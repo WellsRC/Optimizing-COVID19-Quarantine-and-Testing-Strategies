@@ -38,9 +38,9 @@ end
 R0S=R0;
 R0A=R0;
 parfor jj=1:50853
-        IDSL(jj)=(1-pA).*((1./tsv(jj)).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntry(t,u+dtmm(jj),R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),@(u)(u+qmm(jj)),inf,'RelTol',1e-8,'AbsTol',1e-13))+pA.*((1./td(jj)).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntry(t,u+dtmm(jj),R0S,R0A,1,tsv(jj),0),0,td(jj),@(u)(u+qmm(jj)),inf,'RelTol',1e-8,'AbsTol',1e-13));  
-        RT(jj)=integral2(@(u,t)(DurationInfected(u,IncubationI(jj),tsv(jj)).*InfectiousnessfromInfectionTestingEntry(t+u,u+dtmm(jj),R0S,R0A,pA,tsv(jj),SelfIsolate)),0,tsv(jj),qmm(jj),inf,'RelTol',1e-8,'AbsTol',1e-13);       
-        RAT(jj)=(1./integral(@(u)(InfectiousnessfromInfection(u,R0,R0,1,tsv(jj),0)),tsv(jj),inf)).*integral2(@(u,t)(InfectiousnessfromInfection(u,R0S,R0A,1,tsv(jj),0).*InfectiousnessfromInfectionTestingEntry(t+u,u+dtmm(jj),R0S,R0A,1,tsv(jj),0)),0,td(jj),qmm(jj),inf,'RelTol',1e-8,'AbsTol',1e-13);       
+        IDSL(jj)=(1-pA).*((1./tsv(jj)).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntry(t,u+dtmm(jj),R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),@(u)(u+qmm(jj)),inf))+pA.*((1./td(jj)).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntry(t,u+dtmm(jj),R0S,R0A,1,tsv(jj),0),0,td(jj),@(u)(u+qmm(jj)),inf));  
+        RT(jj)=integral2(@(u,t)(DurationInfected(u,IncubationI(jj),tsv(jj)).*InfectiousnessfromInfectionTestingEntry(t+u,u+dtmm(jj),R0S,R0A,pA,tsv(jj),SelfIsolate)),0,tsv(jj),qmm(jj),inf);       
+        RAT(jj)=(1./integral(@(u)(InfectiousnessfromInfection(u,R0,R0,1,tsv(jj),0)),tsv(jj),inf)).*integral2(@(u,t)(InfectiousnessfromInfection(u,R0S,R0A,1,tsv(jj),0).*InfectiousnessfromInfectionTestingEntry(t+u,u+dtmm(jj),R0S,R0A,1,tsv(jj),0)),0,td(jj),tsv(jj)+qmm(jj),inf);       
 end
 
 RTot=(PreI.*RT+pA.*R0.*RAT)./(PreI+pA.*R0);

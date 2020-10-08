@@ -29,7 +29,7 @@ R0A=R0; % Set R0 for asymptomatic
 
 parfor jj=1:4221
     % Assumes asymptomatic enter over infections period [0,ts+21]
-        IDSL(jj)=(1-pAv(jj).*((1./tsv(jj)).*integral2(@(u,t)InfectiousnessfromInfection(t,R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),@(u)(u+qt),inf))+pAv(jj.*((1./td(jj)).*integral2(@(u,t)InfectiousnessfromInfection(t,R0S,R0A,1,tsv(jj),0),0,td(jj),@(u)(u+qt),inf));
+        IDSL(jj)=(1-pAv(jj)).*((1./tsv(jj)).*integral2(@(u,t)InfectiousnessfromInfection(t,R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),@(u)(u+qt),inf))+pAv(jj).*((1./td(jj)).*integral2(@(u,t)InfectiousnessfromInfection(t,R0S,R0A,1,tsv(jj),0),0,td(jj),@(u)(u+qt),inf));
 end
 
 save('VaryPA_NoTesting_5day.mat');
@@ -61,7 +61,7 @@ R0A=R0; % Set R0 for asymptomatic
 
 parfor jj=1:4221
     % Assumes asymptomatic enter over infections period [0,ts+21]
-        IDSL(jj)=(1-pAv(jj).*((1./tsv(jj)).*integral2(@(u,t)InfectiousnessfromInfection(t,R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),@(u)(u+qt),inf))+pAv(jj.*((1./td(jj)).*integral2(@(u,t)InfectiousnessfromInfection(t,R0S,R0A,1,tsv(jj),0),0,td(jj),@(u)(u+qt),inf));
+        IDSL(jj)=(1-pAv(jj)).*((1./tsv(jj)).*integral2(@(u,t)InfectiousnessfromInfection(t,R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),@(u)(u+qt),inf))+pAv(jj).*((1./td(jj)).*integral2(@(u,t)InfectiousnessfromInfection(t,R0S,R0A,1,tsv(jj),0),0,td(jj),@(u)(u+qt),inf));
 end
 
 save('VaryPA_NoTesting_7day.mat');

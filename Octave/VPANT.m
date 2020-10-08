@@ -29,7 +29,7 @@ R0A=R0; % Set R0 for asymptomatic
 
 for jj=1:4221
     % Assumes asymptomatic enter over infections period [0,ts+21]
-        IDSL(jj)=(1-pAv(jj).*((1./tsv(jj)).*dblquad(@(u,t)InfectiousnessfromInfection(t+u,R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),qt,inf))+pAv(jj.*((1./td(jj)).*dblquad(@(u,t)InfectiousnessfromInfection(t+u,R0S,R0A,1,tsv(jj),0),0,td(jj),qt,inf));
+        IDSL(jj)=(1-pAv(jj)).*((1./tsv(jj)).*dblquad(@(u,t)InfectiousnessfromInfection(t+u,R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),qt,inf))+pAv(jj).*((1./td(jj)).*dblquad(@(u,t)InfectiousnessfromInfection(t+u,R0S,R0A,1,tsv(jj),0),0,td(jj),qt,inf));
 end
 
 save('VaryPA_NoTesting_5day.mat');
@@ -61,7 +61,7 @@ R0A=R0; % Set R0 for asymptomatic
 
 for jj=1:4221
     % Assumes asymptomatic enter over infections period [0,ts+21]
-        IDSL(jj)=(1-pAv(jj).*((1./tsv(jj)).*dblquad(@(u,t)InfectiousnessfromInfection(t+u,R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),qt,inf))+pAv(jj.*((1./td(jj)).*dblquad(@(u,t)InfectiousnessfromInfection(t+u,R0S,R0A,1,tsv(jj),0),0,td(jj),qt,inf));
+        IDSL(jj)=(1-pAv(jj)).*((1./tsv(jj)).*dblquad(@(u,t)InfectiousnessfromInfection(t+u,R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),qt,inf))+pAv(jj).*((1./td(jj)).*dblquad(@(u,t)InfectiousnessfromInfection(t+u,R0S,R0A,1,tsv(jj),0),0,td(jj),qt,inf));
 end
 
 save('VaryPA_NoTesting_7day.mat');

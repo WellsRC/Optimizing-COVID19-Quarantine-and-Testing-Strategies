@@ -3,7 +3,7 @@ close all;
 clc;
 
 load('ImpactSelfIsolation_R0=2_5.mat');
-figure('units','normalized','outerposition',[0 0 1 1]);
+figure('units','normalized','outerposition',[0.2 0.2 0.5 0.5]);
 panel=1;
 % p=PDFIncubationdt(tsv,tsv(2)-tsv(1));
 p=PDFavgIncubation(tsv,tsv(2)-tsv(1));
@@ -19,7 +19,7 @@ ID=p*IDT;
 IDA=p2*IDT;
 fprintf('Maximim 8.29 days incubation period: %4.3f (%3.2f days) \n',[max(ID) tt(find(ID==max(ID)))]);
 fprintf('Maximim 5.2 days incubation period: %4.3f (%3.2f days) \n',[max(IDA) tt(find(IDA==max(IDA)))]);
-subplot('Position',[0.07+0.49.*rem(panel-1,2) 0.60-0.42*floor((panel-1)/2) 0.42 0.36]);
+subplot('Position',[0.09 0.17 0.88 0.8]);
 t2=linspace(-21,0,1001);
 % patch([t2 flip(t2)],[pchip(tt,ID,t2) zeros(size(t2))],[0.7 0.7 0.7],'LineStyle','none','Facealpha',0.3); hold on
 
