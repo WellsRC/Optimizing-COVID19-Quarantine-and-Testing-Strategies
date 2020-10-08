@@ -136,13 +136,13 @@ xlim([-0.5 3.5]);
 set(gca,'LineWidth',2,'tickdir','out','XTick',[0 1 2 3],'YTick',q,'XTickLabel',{'No testing','Entry','Exit','Entry and Exit'},'Fontsize',16,'YDir','reverse','XAxisLocation','top');
 box off;
 xlabel('Testing strategy','Fontsize',18);
-ylabel('Duration quarantine','Fontsize',18);
+ylabel('Duration of quarantine','Fontsize',18);
 
 caxis([-0.5 10.5])
 hh=colorbar;
 hh.Ticks=[0:11];
 hh.TickLabels={'0 to 0.1','0.1 to 0.2','0.2 to 0.3','0.3 to 0.4','0.4 to 0.5','0.5 to 0.6','0.6 to 0.7','0.7 to 0.8','0.8 to 0.9','0.9 to 1.0','1.0 +'};
-hh.Label.String={'Expected number of secondary infections post-quarantine'};
+hh.Label.String={'Expected post-quarantine transmission'};
 hh.Label.Rotation=270;
 hh.Label.Position=[7.25 5.5 0];
 hh.Label.FontSize=18;
