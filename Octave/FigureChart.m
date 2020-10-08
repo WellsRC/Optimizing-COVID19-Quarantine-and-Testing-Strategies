@@ -76,7 +76,7 @@ fig1=figure('units','normalized','outerposition',[0 0 0.65 1]);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generate Panel A: SEcondary infections
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-S1=subplot('Position',[0.06 0.01 0.38 0.915]);
+S1=subplot('Position',[0.0575 0.01 0.38 0.915]);
 
 
 load('Colormap2.mat');
@@ -149,13 +149,13 @@ hh.Label.FontSize=18;
 
 colormap(S1,CCC);
 
-text(-0.940789473684211,-1.951388888888891,'A','Fontsize',32,'FontWeight','bold');
+text(-1.08,-1.951388888888891,'A','Fontsize',32,'FontWeight','bold');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generate Panel B: Equiv strategies
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-S2=subplot('Position',[0.58 0.01 0.38 0.915]);
+S2=subplot('Position',[0.5825 0.01 0.38 0.915]);
 
 load('CCTest.mat');
 
@@ -181,7 +181,7 @@ xlabel('Testing strategy','Fontsize',18);
 ylabel('Duration of quarantine with no testing','Fontsize',18);
 
 
-text(0.128,-1.951388888888891,'B','Fontsize',32,'FontWeight','bold');
+text(0.003,-1.951388888888891,'B','Fontsize',32,'FontWeight','bold');
 
 caxis([-0.5 21.5])
 hh=colorbar;

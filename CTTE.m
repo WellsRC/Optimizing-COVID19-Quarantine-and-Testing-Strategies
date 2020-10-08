@@ -56,8 +56,8 @@ parfor jj=1:4422
         
         % Computation for asymptomatic that infected the index case        
         % ONLY ASYMPTOMATIC (SET SELF-ISOLATION TO ZER0 TO ENSURE)
-        RA(jj)=(1./integral(@(u)(InfectiousnessfromInfection(u,R0,R0,1,tsv(jj),0)),tsv(jj),inf)).*integral2(@(u,t)(InfectiousnessfromInfection(u,R0S,R0A,1,tsv(jj),0).*InfectiousnessfromInfectionTestingEntry(t+u,u,R0S,R0A,1,tsv(jj),0)),0,td(jj),q(jj),inf);       
-        RAD1(jj)=(1./integral(@(u)(InfectiousnessfromInfection(u,R0,R0,1,tsv(jj),0)),tsv(jj),inf)).*integral2(@(u,t)(InfectiousnessfromInfection(u,R0S,R0A,1,tsv(jj),0).*InfectiousnessfromInfectionTestingEntry(t+u,u+d1,R0S,R0A,1,tsv(jj),0)),0,td(jj),q(jj)+d1,inf);
+        RA(jj)=(1./integral(@(u)(InfectiousnessfromInfection(u,R0,R0,1,tsv(jj),0)),tsv(jj),inf)).*integral2(@(u,t)(InfectiousnessfromInfection(u,R0S,R0A,1,tsv(jj),0).*InfectiousnessfromInfectionTestingEntry(t+u,u,R0S,R0A,1,tsv(jj),0)),0,td(jj),tsv(jj)+q(jj),inf);       
+        RAD1(jj)=(1./integral(@(u)(InfectiousnessfromInfection(u,R0,R0,1,tsv(jj),0)),tsv(jj)+d1,inf)).*integral2(@(u,t)(InfectiousnessfromInfection(u,R0S,R0A,1,tsv(jj),0).*InfectiousnessfromInfectionTestingEntry(t+u,u+d1,R0S,R0A,1,tsv(jj),0)),0,td(jj),tsv(jj)+q(jj)+d1,inf);
 end
 
 % Compute the total number of secondary infections
@@ -121,8 +121,8 @@ parfor jj=1:4422
         
         % Computation for asymptomatic that infected the index case        
         % ONLY ASYMPTOMATIC (SET SELF-ISOLATION TO ZER0 TO ENSURE)
-        RA(jj)=(1./integral(@(u)(InfectiousnessfromInfection(u,R0,R0,1,tsv(jj),0)),tsv(jj),inf)).*integral2(@(u,t)(InfectiousnessfromInfection(u,R0S,R0A,1,tsv(jj),0).*InfectiousnessfromInfectionTestingEntry(t+u,u,R0S,R0A,1,tsv(jj),0)),0,td(jj),q(jj),inf);       
-        RAD1(jj)=(1./integral(@(u)(InfectiousnessfromInfection(u,R0,R0,1,tsv(jj),0)),tsv(jj),inf)).*integral2(@(u,t)(InfectiousnessfromInfection(u,R0S,R0A,1,tsv(jj),0).*InfectiousnessfromInfectionTestingEntry(t+u,u+d1,R0S,R0A,1,tsv(jj),0)),0,td(jj),q(jj)+d1,inf);
+        RA(jj)=(1./integral(@(u)(InfectiousnessfromInfection(u,R0,R0,1,tsv(jj),0)),tsv(jj),inf)).*integral2(@(u,t)(InfectiousnessfromInfection(u,R0S,R0A,1,tsv(jj),0).*InfectiousnessfromInfectionTestingEntry(t+u,u,R0S,R0A,1,tsv(jj),0)),0,td(jj),tsv(jj)+q(jj),inf);       
+        RAD1(jj)=(1./integral(@(u)(InfectiousnessfromInfection(u,R0,R0,1,tsv(jj),0)),tsv(jj)+d1,inf)).*integral2(@(u,t)(InfectiousnessfromInfection(u,R0S,R0A,1,tsv(jj),0).*InfectiousnessfromInfectionTestingEntry(t+u,u+d1,R0S,R0A,1,tsv(jj),0)),0,td(jj),tsv(jj)+q(jj)+d1,inf);
 end
 
 % Compute the total number of secondary infections
