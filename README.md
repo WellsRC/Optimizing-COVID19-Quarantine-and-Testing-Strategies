@@ -1,6 +1,24 @@
 # Optimizing COVID-19 quarantine and testing strategies
  Chad R. Wells*, Jeffrey P. Townsend*, Abhishek Pandey, Gary Krieger, 
 Seyed M. Moghadas, Burton Singer, Robert H. McDonald, Alison P. Galvani 
+
+Copyright (C) <2020>, Chad R. Wells et. al. All rights reserved. Released under the GNU General Public License (GPL)
+
+This repository contains codes and data used to simulate and analyze COVID-19 quarantine and testing strategies in the scenarios of 
+1. Entry into quarantine uniformly during the incubation period or the course of disease 
+2. Entry into quarantine through contact tracing
+
+The model code is written in MATLAB and results are saved as MATLAB data files (extension .mat), with plots also being constructed in MATLAB. As MATLAB is not an open-source software/programming language, a compatible code that can be run using GNU Octave can be found in the directory named Octave in the repository.
+
+## OS System requirements
+The codes developed here are tested on Windows operating system (Windows 10 Home). However as Matlab and Octave are available for most operating systems, codes should run on Mac OSX and Linux as well.
+
+## Installation guide
+### MATLAB
+Installation instruction for MATLAB can be found at https://www.mathworks.com/help/install/install-products.html. Typical install time for MATLAB on a "normal" desktop is around 30-40 minutes. The current codes were developed and tested on MATLAB R2016b.
+### GNU Octave
+When MATLAB is not accessible due to lack of license or any other reason, the open-source GNU Octave can be used to test the code. We tested our code with GNU Octave version 4.2.2. Necessary adjustment to code was done to make it compatible with GNU Octave and it can be found in the directory named Octave in the repository. Installation instruction for GNU octave can be found at https://www.gnu.org/software/octave/. Typical install time for GNU Octave on a "normal" desktop is 15 minutes or less. As most data is saved in MATLAB data file format as well, they can be read directly in GNU Octave for speed. If testing the code that reads the raw data and formats them (format_data.m), it may be essential to install 'io' package in GNU Octave and can be installed using pkg install -forge io, which can then be loaded in work environment using pkg load io
+
 ## Functions
 ### BaselineParameters
 Returns the baseline parameters for the analysis
