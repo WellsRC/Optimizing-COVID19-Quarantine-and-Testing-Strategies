@@ -1,3 +1,5 @@
+% Produces the plots for quarnatine and contact tracing with an incubation period of 8.29 days
+% and Poisson distribution
 clear;
 clc;
 close all;

@@ -1,3 +1,5 @@
+% Produces the plots for contact tracing with a one day delay from index to
+% finding contact for incubation period of 8.29 days
 clear;
 clc;
 close all;

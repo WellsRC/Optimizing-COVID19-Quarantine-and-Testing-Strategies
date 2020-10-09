@@ -4,17 +4,17 @@ p12=fmincon(@(z)sum((y-100.*gampdf(x,z(1),z(2))).^2),[26 0.55])
 
 load('Digitized_InfectionProfile_5days.mat')
 x=IP(:,1)+5;
-y=IP(:,2);
+y=IP(:,2); % Y is not scaled by 100
 p5=fmincon(@(z)sum((y-gampdf(x,z(1),z(2))).^2),[7.8 1])
 
 load('Digitized_InfectionProfile_8days.mat')
 x=IP(:,1)+8;
-y=IP(:,2);
+y=IP(:,2);  % Y is not scaled by 100
 p8=fmincon(@(z)sum((y-gampdf(x,z(1),z(2))).^2),[26 0.55])
 
 load('Digitized_InfectionProfile_11days.mat')
 x=IP(:,1)+11;
-y=IP(:,2);
+y=IP(:,2);  % Y is not scaled by 100
 p11=fmincon(@(z)sum((y-gampdf(x,z(1),z(2))).^2),[26 2])
 
 Inc=[5 8 11 12.3];

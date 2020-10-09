@@ -1,3 +1,4 @@
+% Produces the plots for quarnatine with an incubation period of 5.2 days
 clear;
 clc;
 close all;

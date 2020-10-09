@@ -1,3 +1,5 @@
+% Produces the plots for contact tracing with an incubation period of 8.29 days
+% and pA=22.6%
 clear;
 clc;
 close all;

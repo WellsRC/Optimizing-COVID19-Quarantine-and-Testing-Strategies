@@ -1,3 +1,4 @@
+% Produces the plots for contact tracing w/ no delay in identication with an incubation period of 5.2 days
 clear;
 clc;
 close all;

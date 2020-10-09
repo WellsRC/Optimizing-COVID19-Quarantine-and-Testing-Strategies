@@ -1,3 +1,4 @@
+% Plots the infecitvy profile for the two incubation periods
 clear;
 close all;
 clc;
@@ -33,7 +34,7 @@ legend([p1 p3],{'8.29 days (Qin et al, 2020)',['5.2 days (Li et al, 2020)']},'Fo
 legend boxoff;
 box off;
 xlabel('Day of symptom onset','Fontsize',18);
-ylabel('Average infectiousness','Fontsize',18);
+ylabel('Average infectivity','Fontsize',18);
 
 ylim([0 0.4]);
 xlim([-8 12]);

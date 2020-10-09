@@ -1,3 +1,4 @@
+%Produces the plot of the optimal testing day
 clear;
 close all;
 load('TestingonDayt_21DayQ.mat')

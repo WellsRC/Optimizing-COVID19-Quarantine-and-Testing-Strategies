@@ -1,3 +1,5 @@
+%produces the plot for the probability of post-quarantine transmission for
+%different values of pA
 clear;
 close all;
 load('VaryPA_NoTesting_5day.mat')

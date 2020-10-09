@@ -34,7 +34,7 @@ legend([p1 p3],{'No self-isolation',['Self-isolation and ' num2str(100*pA1) '% a
 legend boxoff;
 box off;
 xlabel('Day of symptom onset','Fontsize',18);
-ylabel('Average infectiousness','Fontsize',18);
+ylabel('Average infectivity','Fontsize',18);
 
 ylim([0 0.4]);
 xlim([-8 12]);
@@ -78,7 +78,7 @@ legend([p1 p3],{'No self-isolation',['Self-isolation and ' num2str(100*pA1) '% a
 legend boxoff;
 box off;
 xlabel('Day of symptom onset','Fontsize',18);
-ylabel('Average infectiousness','Fontsize',18);
+ylabel('Average infectivity','Fontsize',18);
 
 ylim([0 0.4]);
 xlim([-8 12]);
@@ -121,7 +121,7 @@ legend([p1 p3],{'No self-isolation',['Self-isolation and ' num2str(100*pA1) '% a
 legend boxoff;
 box off;
 xlabel('Day of symptom onset','Fontsize',18);
-ylabel('Average infectiousness','Fontsize',18);
+ylabel('Average infectivity','Fontsize',18);
 
 ylim([0 0.4]);
 xlim([-8 12]);
@@ -165,7 +165,7 @@ legend([p1 p3],{'No self-isolation',['Self-isolation and ' num2str(100*pA1) '% a
 legend boxoff;
 box off;
 xlabel('Day of symptom onset','Fontsize',18);
-ylabel('Average infectiousness','Fontsize',18);
+ylabel('Average infectivity','Fontsize',18);
 
 ylim([0 0.4]);
 xlim([-8 12]);

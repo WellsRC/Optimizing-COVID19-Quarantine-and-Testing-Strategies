@@ -6,9 +6,9 @@ clc;
 close all;
 load('Sensirivity_Time_Quarantine.mat')
 p=PDFavgIncubation(tsv,tsv(2)-tsv(1));
-SS=p*SS;
+SS2=p*SS2;
 
-fprintf('Proportion of detected cases identified on exit: %3.1f%% \n',100.*((1-SS(1)).*SS(2))./(SS(1)+(1-SS(1)).*SS(2)));
+fprintf('Proportion of detected cases identified on exit with self-isolation on symptom onset: %3.1f%% \n',100.*((1-SS2(1)).*SS2(2))./(SS2(1)+(1-SS2(1)).*SS2(2)));
 
 clear;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55

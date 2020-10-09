@@ -7,6 +7,7 @@ clear;
 tsv=linspace(1,21,1001);
 t=[0 4];
 SS=zeros(length(tsv),2);
+SS2=zeros(length(tsv),2);
 
 RPre=zeros(length(tsv),1);
 
@@ -17,13 +18,8 @@ for jj=1:length(tsv)
     td=ts+20;
     R0S=R0;
     R0A=R0;
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % NO SELF-ISOLATION
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % ID=zeros(101,1);
-    SelfIsolate=0; % No self-isolation
     for tt=1:2
-        SS(jj,tt)=(1-pA).*(1./ts).*integral(@(u)(SensitivityvsViralLoad(ViralShedding_Symptomatic(u+t(tt),ts))),0,ts)+pA.*(1./td).*integral(@(u)(SensitivityvsViralLoad(ViralShedding_Symptomatic(u+t(tt),ts))),0,td);
+        SS2(jj,tt)=integral(@(u)SensitivityvsViralLoadW(u+t(tt),pA,ts,td),0,td);
     end
 end
 
