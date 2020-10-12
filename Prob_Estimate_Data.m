@@ -1,14 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Returns results for section on data analysis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-clear;
-clc;
-close all;
-load('Sensirivity_Time_Quarantine.mat')
-p=PDFavgIncubation(tsv,tsv(2)-tsv(1));
-SS2=p*SS2;
-
-fprintf('Proportion of detected cases identified on exit with self-isolation on symptom onset: %3.1f%% \n',100.*((1-SS2(1)).*SS2(2))./(SS2(1)+(1-SS2(1)).*SS2(2)));
 
 clear;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
@@ -38,8 +30,7 @@ clear;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
 % Risk onward
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
-
-load('ImpactQuarantine.mat')
+load('PQTGivenNegative.mat');
 p=PDFavgIncubation(tsvt,tsvt(2)-tsvt(1));
 IDSL=reshape(IDSL,length(tsvt),length(qt));
 PQ=p*Probability_Onward(IDSL,1);
