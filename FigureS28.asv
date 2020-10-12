@@ -15,7 +15,7 @@ xlim([0 ts]);
 ylim([0 0.35]);
 legend({'Contact tracing (infected by index)','Uniform symptomatic','Uniform asymptomatic'})
 legend boxoff;
-xlabel({'Day post-infection of contact infected','by symptomatic index'},'Fontsize',18);
+xlabel({'Days post-infection of contact infected','by symptomatic index'},'Fontsize',18);
 ylabel('Density','Fontsize',18);
 box off;
 set(gca,'LineWidth',2,'tickdir','out','Fontsize',16,'XTick',[0:8],'XMinorTick','on','Yminortick','on','YTick',[0:0.05:0.35]);
