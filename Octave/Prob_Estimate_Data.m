@@ -35,7 +35,11 @@ p=PDFavgIncubation(tsvt,tsvt(2)-tsvt(1));
 IDSL=reshape(IDSL,length(tsvt),length(qt));
 PQ=p*Probability_Onward(IDSL,1);
 N=15;
+TC=p*(N.*IDSL);
 fprintf('Probability of onward transmission for 5-day quaranitine with %d cases: %3.1f%% \n',[N 100.*(1-(1-PQ(qt==5)).^N)]);
+fprintf('Expected cases for 5-day quaranitine with %d cases: %3.2f \n',[N TC(qt==5)]);
 
 N=1;
+TC=p*(N.*IDSL);
 fprintf('Probability of onward transmission for 7-day quaranitine with %d cases: %3.1f%% \n',[N 100.*(1-(1-PQ(qt==7)).^N)]);
+fprintf('Expected cases for 7-day quaranitine with %d cases: %3.2f \n',[N TC(qt==7)]);
