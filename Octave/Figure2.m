@@ -13,16 +13,16 @@ for ii=1:2
    
 
 subplot('Position',[0.07+(0.555-0.055).*(ii-1),0.56,0.42,0.4]);
-if(ii==1)
+if(ii==2)
     b=bar([1 1.5 2.5 3 3.5], yy,'k','LineStyle','none'); hold on
     xx=[1 1.5 2.5 3 3.5];
     
     b.FaceColor = 'flat';
     b.CData(4,:)=hex2rgb('#D70026');
-    annotation('line',[0.195,0.321]+0.08,[0.478 0.478],'color','k','LineWidth',2)
-    annotation('line',[0.195,0.195]+0.08,[0.478 0.508],'color','k','LineWidth',2)
-    annotation('line',[0.321,0.321]+0.08,[0.478 0.508],'color','k','LineWidth',2)
-    annotation('line',[0.2580 0.2580]+0.08,[0.478 0.448],'color','k','LineWidth',2)
+    annotation('line',[0.195,0.321]+0.08+0.5,[0.478 0.478],'color','k','LineWidth',2)
+    annotation('line',[0.195,0.195]+0.08+0.5,[0.478 0.508],'color','k','LineWidth',2)
+    annotation('line',[0.321,0.321]+0.08+0.5,[0.478 0.508],'color','k','LineWidth',2)
+    annotation('line',[0.2580 0.2580]+0.08+0.5,[0.478 0.448],'color','k','LineWidth',2)
     yt(3)./(yt(2)+yt(3))
     for tt=1:5
         if(~isnan(yy(tt)))
@@ -47,10 +47,10 @@ else
     
     b.FaceColor = 'flat';
     b.CData(3,:)=hex2rgb('#D70026');
-    annotation('line',[0.754726890756303,0.971638655462185],[0.478 0.478],'color','k','LineWidth',2)
-    annotation('line',[0.754726890756303,0.754726890756303],[0.478 0.508],'color','k','LineWidth',2)
-    annotation('line',[0.971638655462185,0.971638655462185],[0.478 0.508],'color','k','LineWidth',2)
-    annotation('line',[0.8632 0.8632],[0.478 0.448],'color','k','LineWidth',2)
+    annotation('line',[0.754726890756303,0.971638655462185]-0.5,[0.478 0.478],'color','k','LineWidth',2)
+    annotation('line',[0.754726890756303,0.754726890756303]-0.5,[0.478 0.508],'color','k','LineWidth',2)
+    annotation('line',[0.971638655462185,0.971638655462185]-0.5,[0.478 0.508],'color','k','LineWidth',2)
+    annotation('line',[0.8632 0.8632]-0.5,[0.478 0.448],'color','k','LineWidth',2)
     yt(3)./(yt(2)+yt(3))
     for tt=1:3
         if(~isnan(yy(tt)))
@@ -70,7 +70,7 @@ else
     xlim([0.5 3]);
     plot(1.5.*ones(1,101),linspace(0,0.035,101),'-.','color',[0.6 0.6 0.6],'LineWidth',2);
 end
-if(ii==1)
+if(ii==2)
     text(0.9525,-0.005230149597238,'+','FontWeight','bold','Fontsize',16);
     text(1.488435563816605,-0.005230149597238,'+','FontWeight','bold','Fontsize',16);
     text(2.4469,-0.005230149597238,'+','FontWeight','bold','Fontsize',16);
