@@ -11,51 +11,20 @@ This repository contains codes and data used to simulate and analyze COVID-19 qu
 The model code is written in MATLAB and results are saved as MATLAB data files (extension .mat), with plots also being constructed in MATLAB. As MATLAB is not an open-source software/programming language, a compatible code that can be run using GNU Octave can be found in the directory named Octave in the repository.
 
 ## OS System requirements
-The codes developed here are tested on Windows operating system (Windows 10 Home). However as Matlab and Octave are available for most operating systems, codes should run on Mac OSX and Linux as well.
+The codes developed here are tested on Windows operating system (Windows 10 Home: 64-bit). However as Matlab and Octave are available for most operating systems, codes should run on Mac OSX and Linux as well.
 
 ## Installation guide
 ### MATLAB
-Installation instruction for MATLAB can be found at https://www.mathworks.com/help/install/install-products.html. Typical install time for MATLAB on a "normal" desktop is around 30-40 minutes. The current codes were developed and tested on MATLAB R2016b.
+Installation instruction for MATLAB can be found at https://www.mathworks.com/help/install/install-products.html. Typical install time for MATLAB on a "normal" desktop is around 30-40 minutes. The current codes were developed and tested on MATLAB R2018b.
 ### GNU Octave
 When MATLAB is not accessible due to lack of license or any other reason, the open-source GNU Octave can be used to test the code. We tested our code with GNU Octave version 4.2.2. Necessary adjustment to code was done to make it compatible with GNU Octave and it can be found in the directory named Octave in the repository. Installation instruction for GNU octave can be found at https://www.gnu.org/software/octave/. Typical install time for GNU Octave on a "normal" desktop is 15 minutes or less. As most data is saved in MATLAB data file format as well, they can be read directly in GNU Octave for speed. If testing the code that reads the raw data and formats them (format_data.m), it may be essential to install 'io' package in GNU Octave and can be installed using pkg install -forge io, which can then be loaded in work environment using pkg load io
 
-## Functions
-### BaselineParameters
-Returns the baseline parameters for the analysis
-### DurationInfected
-The duration in which a contact of a symptomatic index case has been infected for
-### FigureChart
-Generates the Figure chart for the Secondary infections post quarantine and equivialent duration of quaratnine with testing to a duration of quarantine with no testing, assuming delay from sample to result is irrelevant
-### FigureChartDelay
-Generates the Figure chart for the Secondary infections post quarantine and equivialent duration of quaratnine with testing to a duration of quarantine with no testing, assuming one day delay from sample to result
-### InfectiousnessfromInfection
-The temporal number of secondary infections post-quarantine given no testing 
-### InfectiousnessfromInfectionTestingEntry
-The temporal number of secondary infections post-quarantine given single test time (does both entry/exit)
-### InfectiousnessfromInfectionTestingEntryExit
-The temporal number of secondary infections post-quarantine given timing of two tests
-### InfectiousnessfromInfectionTestingMultiple
-The temporal number of secondary infections post-quarantine given timing of multiple tests
-### PDFavgIncubation
-The distribution of the incubation period of 8.29 days
-### PDFavgIncubation_Alt
-The distribution of the incubation period of 5.2 days
-### Probability_Onward
-The probability of psot-quarantine transmission given how secondafy cases are distributed
-### RiskChart
-Generates the Figure chart for the probabaility of post quarantine trasnmisison, assuming delay from sample to result is negligible
-### RiskChartDelay
-Generates the Figure chart for the probabaility of post quarantine trasnmisison, assuming one day delay from sample to result
-### SensitivityTimeSamp
-Temporal sensitiviity of the RT-PCR assay starting one day from symptom onset for an incubatino period of 7.76 days
-### SensitivityvsViralLoad
-The sensitiviity of the RT-PCR assay given the viral load (sigmoidal Hill function)
-### TimeInfection
-The time in which a contact was infected from a symptomatic index case
-### ViralShedding_Asymptomatic
-The infectity profile of an asymptomatic individual (independent of R0)
-### ViralShedding_Symptomatic
-The infectity profile of an symptomatic individual (independent of R0)
+## Demo
+Figure1 generates Figure 1 in the main text; Figure S2 and Figure S3 (Run Time: 22 seconds). All mat files to run this script are avaialble. This figure script requires the scripts IPQ,ITE,ITXD, and ITEXD to be run if parsmeters changed in the analysis in order to update 'ImpactQuarantine.mat'; 'TestingonEntry.mat'; 'TestingonExit_OneDayDelay.mat'; 'TestingonEntryExit_OneDayDelay.mat'. Estimated run times on 6 processor in parallel 
+
+## Instructions for use
+To generate the Figures and output of the calculations, select a script from Figures section to run in MATLAB and enter the name in the command line. All mat file are availble to generate figures and conduct the calculations. To run analysis on a different set of parameters, adjust the parameters in the script and enter the name of the script in the command line to run.
+
 ## Analysis scripts
 ### IS
 Generates the infectivity profile for R0=2.5 and R0=2.0, as well as pA=30.8% and pA=22.6%.
@@ -134,6 +103,43 @@ This script generates the figures for the secondary number of cases post-quarant
 This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine through contact tracing, with 22.6% infections being asymptomatic
 ### FigureS24_S25
 This script generates the figures for the probability of post-quarantine transmission when entering quarantine not through contact tracing, as well as through contact tracing, assuming transmisison post-quarantine is Poisson distributed
+## Functions
+### BaselineParameters
+Returns the baseline parameters for the analysis
+### DurationInfected
+The duration in which a contact of a symptomatic index case has been infected for
+### FigureChart
+Generates the Figure chart for the Secondary infections post quarantine and equivialent duration of quaratnine with testing to a duration of quarantine with no testing, assuming delay from sample to result is irrelevant
+### FigureChartDelay
+Generates the Figure chart for the Secondary infections post quarantine and equivialent duration of quaratnine with testing to a duration of quarantine with no testing, assuming one day delay from sample to result
+### InfectiousnessfromInfection
+The temporal number of secondary infections post-quarantine given no testing 
+### InfectiousnessfromInfectionTestingEntry
+The temporal number of secondary infections post-quarantine given single test time (does both entry/exit)
+### InfectiousnessfromInfectionTestingEntryExit
+The temporal number of secondary infections post-quarantine given timing of two tests
+### InfectiousnessfromInfectionTestingMultiple
+The temporal number of secondary infections post-quarantine given timing of multiple tests
+### PDFavgIncubation
+The distribution of the incubation period of 8.29 days
+### PDFavgIncubation_Alt
+The distribution of the incubation period of 5.2 days
+### Probability_Onward
+The probability of psot-quarantine transmission given how secondafy cases are distributed
+### RiskChart
+Generates the Figure chart for the probabaility of post quarantine trasnmisison, assuming delay from sample to result is negligible
+### RiskChartDelay
+Generates the Figure chart for the probabaility of post quarantine trasnmisison, assuming one day delay from sample to result
+### SensitivityTimeSamp
+Temporal sensitiviity of the RT-PCR assay starting one day from symptom onset for an incubatino period of 7.76 days
+### SensitivityvsViralLoad
+The sensitiviity of the RT-PCR assay given the viral load (sigmoidal Hill function)
+### TimeInfection
+The time in which a contact was infected from a symptomatic index case
+### ViralShedding_Asymptomatic
+The infectity profile of an asymptomatic individual (independent of R0)
+### ViralShedding_Symptomatic
+The infectity profile of an symptomatic individual (independent of R0)
 ## MAT files
 ### TableData_A
 The data for region A
