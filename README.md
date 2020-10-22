@@ -28,6 +28,8 @@ To generate the Figures and output of the calculations, select a script from Fig
 ## Analysis scripts
 ### IS
 Generates the infectivity profile for R0=2.5 and R0=2.0, as well as pA=30.8% and pA=22.6%.
+### ISens
+Generates the sensitivity profile since the time of infection.
 ### IPQ
 Runs the analysis for uniform entry into quarantine with 30.8% infections being asymptomatic, and 22.6% being asymptomatic, for quarantine durations from 0 to 21 days with no testing and R0=2.5
 ### ITE
