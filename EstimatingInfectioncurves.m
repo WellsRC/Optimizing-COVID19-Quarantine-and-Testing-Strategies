@@ -34,6 +34,6 @@ end
 
 close all;
 t=linspace(0,42,1001);
-for ii=1:21
-   plot(t-ii, gampdf(t,av(ii),bv(ii)),'k'); hold on;
+for ii=1:201
+   plot(t-TT(ii), gampdf(t,av(ii),bv(ii)),'k'); hold on;
 end
