@@ -1,20 +1,11 @@
-function [fig1] = RiskChart(IDSNT,IDSTE,IDSTX,IDSTEX,tsv,q,PD,Risk)
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% What probability density function to use for the incubatinop period
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-if(PD==0)
-    p=PDFavgIncubation(tsv,tsv(2)-tsv(1));
-else
-    p=PDFavgIncubation_Alt(tsv,tsv(2)-tsv(1));
-end
+function [fig1] = RiskChart(IDSNT,IDSTE,IDSTX,IDSTEX,q,Risk)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Calculations
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Average probability of onward transmisison
-Prob=[(p*Probability_Onward(IDSNT,Risk))' (p*Probability_Onward(IDSTE,Risk))' (p*Probability_Onward(IDSTX,Risk))' (p*Probability_Onward(IDSTEX,Risk))'];
+Prob=[(Probability_Onward(IDSNT,Risk))' (Probability_Onward(IDSTE,Risk))' (Probability_Onward(IDSTX,Risk))' (Probability_Onward(IDSTEX,Risk))'];
 
 
 f14=find(q==14);

@@ -4,23 +4,25 @@ clear;
 clc;
 close all;
 Risk=1; % Negative Binomial
+
+tL=2.9; % Baseline latent period
+
 load('ContactTracing_IndexInfect_Contact.mat');
-IDSNT=reshape(RTotD1,length(tsvt),length(qt));
-IDSNT=IDSNT(:,2:end);
+IDSNT=RTotD1(tLv==tL);
+q=q(tLv==tL);
+IDSNT=IDSNT(q>0)';
 load('ContactTracing_IndexInfect_Contact_Test_Entry.mat');
-IDSTE=reshape(RTotD1,length(tsvt),length(qt));
-IDSTE=IDSTE(:,2:end);
-load('ContactTracing_IndexInfect_Contact_Test_Exit_OneDayDelay.mat');
-IDSTX=reshape(RTotD1,length(tsvt),length(qt));
-load('ContactTracing_IndexInfect_Contact_Test_Entry_and_Exit_OneDayDelay.mat');
-IDSTEX=reshape(RTotD1,length(tsvt),length(qt));
+IDSTE=RTotD1(tLv==tL);
+q=q(tLv==tL);
+IDSTE=IDSTE(q>0)';
+load('ContactTracing_IndexInfect_Contact_Test_Exit_Delay.mat');
+IDSTX=RTotD1(tLv==tL)';
+load('ContactTracing_IndexInfect_Contact_Test_Entry_Exit_Delay.mat');
+IDSTEX=RTotD1(tLv==tL)';
 
-
-tsv=tsvt;
-
-[f1]=RiskChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,tsv,qt,0,Risk);
+[f1]=RiskChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,qt,Risk);
 
 print(f1,'FigureS10','-dpng','-r600');
 
-[f1]=FigureChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,tsv,qt,0);
+[f1]=FigureChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,qt);
 print(f1,'FigureS9','-dpng','-r600');

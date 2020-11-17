@@ -1,4 +1,4 @@
-function S = SensitivityvsViralLoad(V)
+function S = SensitivityvsViralLoad(V,ts,tL)
 %SensitivityvsViralLoad(V,asym) - Returns the sensitivity for a given viral
 %load
 
@@ -18,12 +18,18 @@ function S = SensitivityvsViralLoad(V)
 
 % Constants for hill function determined by fitting to the mont after
 % symotms on set
-% x=[1:30]+7.76; % points to construct the spline of the sensitivity for given viral load
-% SS=[SensitivityTimeSamp(x)]; % Sensitivity over time
-% VS=[ViralShedding_Symptomatic(x,7.76)]; % Assume that the sensitivitiy was measures for symptomatic individuals
-% pp=fmincon(@(c)sum((SS-VS.^c(2)./(VS.^c(2)+(10.^c(1)).^c(2))).^2),[-5 1],[],[],[],[],[-16 0.01],[-2 5])
+    av=[6.85146800000000;3.44342380000000;2.16082760000000];
+    bv=[0.982316341225263;1.76955383531329;2.35323186981921];
+    LatentPeriod=[1.9,2.9,3.9];
+    a=av(tL==LatentPeriod);
+    b=bv(tL==LatentPeriod);
 
-C=[3.00850731832214e-05,0.259090194626996];
-S=V.^C(2)./(V.^C(2)+C(1).^C(2)); % Spline interpolation of the senisitivty given the viral load 
+    mm=(a-1).*b+tL; % The mode of the gamma function plus the latent period
+    tt=[mm:0.1:150];
+    Vx=ViralShedding_Symptomatic(tt,tL);
+    f=find(Vx==max(Vx));
+    Vx=Vx(f:end);
+    Sy=SensitivityTimeSamp(tt(f:end),ts);
+    S=pchip(Vx,Sy,V);
 end
 

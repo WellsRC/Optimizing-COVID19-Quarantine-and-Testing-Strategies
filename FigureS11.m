@@ -3,45 +3,45 @@ clear;
 close all;
 clc;
 
-load('ImpactSelfIsolation_R0=2_5.mat');
+
+
 figure('units','normalized','outerposition',[0.2 0.2 0.5 0.5]);
-panel=1;
-% p=PDFIncubationdt(tsv,tsv(2)-tsv(1));
-p=PDFavgIncubation(tsv,tsv(2)-tsv(1));
-p2=PDFavgIncubation_Alt(tsv,tsv(2)-tsv(1));
-tt=[-21:0.05:39];
-IDT=zeros(length(tsv),length(tt));
-IDST=zeros(length(tsv),length(tt));
-for ii=1:length(tsv)
-    ff=find(tt>=-tsv(ii));
-    IDT(ii,ff)=spline(t-tsv(ii),ID(ii,:),tt(ff));
-end
-ID=p*IDT;
-IDA=p2*IDT;
-fprintf('Maximim 8.29 days incubation period: %4.3f (%3.2f days) \n',[max(ID) tt(find(ID==max(ID)))]);
-fprintf('Maximim 5.2 days incubation period: %4.3f (%3.2f days) \n',[max(IDA) tt(find(IDA==max(IDA)))]);
+
+load('ImpactSelfIsolation_R0=2_5.mat');
+
+tt=[linspace(-8.29,0,301) linspace(0,39,5001)]+8.29;
+
+    IDO=pchip(t,ID(tLv==2.9,:),tt);
+    IDA=pchip(t,ID(tLv==1.9,:),tt);
+    IDA2=pchip(t,ID(tLv==3.9,:),tt);
+    RS1=RS(tLv==2.9);
+    RSA=RS(tLv==1.9);
+    RSA2=RS(tLv==3.9);
 subplot('Position',[0.09 0.17 0.88 0.8]);
 t2=linspace(-21,0,1001);
 % patch([t2 flip(t2)],[pchip(tt,ID,t2) zeros(size(t2))],[0.7 0.7 0.7],'LineStyle','none','Facealpha',0.3); hold on
-
-p3=plot(tt,IDA,'-.','color',hex2rgb('#66A5AD'),'LineWidth',2); hold on
-p1=plot(tt,ID,'color',hex2rgb('#2A3132'),'LineWidth',2); hold on
-text(-0.959999999999997,0.193258426966292, num2str(round(p*RPre,2)),'color',hex2rgb('#2A3132'),'Fontsize',16,'HorizontalAlignment','center');
-text(-0.959999999999997,0.143258426966292, num2str(round(p2*RPre,2)),'color',hex2rgb('#66A5AD'),'Fontsize',16,'HorizontalAlignment','center');
-plot(zeros(101,1),linspace(0,max([(ID(tt==0)) (IDA(tt==0))]),101),'-.','color',[0.7 0.7 0.7],'LineWidth',1.5)
+p3=plot(tt,IDA2,'-.','color',hex2rgb('#4CB5F5'),'LineWidth',2); hold on
+p2=plot(tt,IDA,'-.','color',hex2rgb('#66A5AD'),'LineWidth',2); hold on
+p1=plot(tt,IDO,'color',hex2rgb('#2A3132'),'LineWidth',2); hold on
+text(-0.959999999999997+8.29,0.193258426966292, num2str(round(RPre(tLv==2.9),2),'%3.2f'),'color',hex2rgb('#2A3132'),'Fontsize',16,'HorizontalAlignment','center');
+text(-0.959999999999997+8.29,0.143258426966292, num2str(round(RPre(tLv==1.9),2),'%3.2f'),'color',hex2rgb('#66A5AD'),'Fontsize',16,'HorizontalAlignment','center');
+text(-0.959999999999997+8.29,0.093258426966292, num2str(round(RPre(tLv==3.9),2),'%3.2f'),'color',hex2rgb('#4CB5F5'),'Fontsize',16,'HorizontalAlignment','center');
+plot(ts.*ones(101,1),linspace(0,0.45,101),'-.','color',[0.7 0.7 0.7],'LineWidth',1.5)
 % bar([1:14],ID,'LineStyle','none');
-legend([p1 p3],{'8.29 days (Qin et al, 2020)',['5.2 days (Li et al, 2020)']},'Fontsize',14);
+legend([p1 p2 p3],{'2.9 day latent period','1.9 day latent period','3.9 day latent period'},'Fontsize',14);
 legend boxoff;
 box off;
-xlabel('Day of symptom onset','Fontsize',18);
-ylabel('Average infectivity','Fontsize',18);
+xlabel('Day of post-infection','Fontsize',18);
+ylabel('Infectivity','Fontsize',18);
 
-ylim([0 0.4]);
-xlim([-8 12]);
+ylim([0 0.45]);
+xlim([0 21]);
 set(gca,'LineWidth',2,'tickdir','out','Fontsize',16,'XTick',[-21:21],'XMinorTick','on','Yminortick','on','YTick',[0:0.1:0.9]);
 
-fprintf('Expected number of infections under no self-isolation: %3.2f \n',p*RNS);
-fprintf('Expected number of infections under self-isolation and %3.1f%% asymptomatic: %3.2f \n',[pA*100 p*RS]);
+fprintf('Expected number of infections under no self-isolation: %3.2f \n',RNS);
+fprintf('Expected number of infections under self-isolation and %3.1f%% asymptomatic: %3.2f \n',[pA*100 RS(tLv==2.9)]);
+fprintf('Expected number of infections under self-isolation and %3.1f%% asymptomatic: %3.2f \n',[pA*100 RS(tLv==1.9)]);
+fprintf('Expected number of infections under self-isolation and %3.1f%% asymptomatic: %3.2f \n',[pA*100 RS(tLv==3.9)]);
 
 
 print(gcf,'FigureS11','-dpng','-r600');

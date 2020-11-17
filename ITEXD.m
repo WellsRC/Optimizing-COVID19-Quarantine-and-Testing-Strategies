@@ -8,68 +8,58 @@ pobj=parpool(20); % Parallel pool
 qt=[1:21]; % Quarantine durations consideredd
 
 SelfIsolate=1; % Self-isolation
-tsvt=[1:0.1:21]; % vecotor for the incbation periods to be integrated over
+tLt=[1.9 2.9 3.9]; % vecotor for the incbation periods to be integrated over
 
 % Allcoate memory for output
-IDS=zeros(length(tsvt),length(qt)); % Assumes asymptomatic enter during incubation period
-IDSL=zeros(length(tsvt),length(qt)); % Assumes asymptomatic enter over infections period [0,ts+21]
+IDSL=zeros(length(tLt),length(qt)); % Assumes asymptomatic enter over infections period [0,ts+21]
 
 % Get Basline parameters
-[pA,~,R0] = BaselineParameters(tsvt(1)); % Does not matter here what ts is fed in 
+[pA,~,R0,ts] = BaselineParameters(tLt(1)); % Does not matter here what ts is fed in 
 
-[q,tsv]=meshgrid(qt,tsvt); % Create a mesh grid of the paramters being changes
+[q,tLv]=meshgrid(qt,tLt); % Create a mesh grid of the paramters being changes
 q=q(:); % Vectorize the matrix
-tsv=tsv(:); % Vectorize the matrix
-IDS=IDS(:); % Vectorize the matrix
+tLv=tLv(:); % Vectorize the matrix
 IDSL=IDSL(:); % Vectorize the matrix
 
-td=tsv+20; % Asymptomatic increase 21 days from symptom onset
+td=ts+20; % Asymptomatic increase 21 days from symptom onset
 
 R0S=R0; % Set R0 for symptomatic
 R0A=R0; % Set R0 for asymptomatic
 
-parfor jj=1:4221
-        % Assumes asymptomatic enter during incubation period
-        IDS(jj)=(1./tsv(jj)).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+q(jj)-1,R0S,R0A,pA,tsv(jj),SelfIsolate),0,tsv(jj),@(u)(u+q(jj)),inf);   
+parfor jj=1:63 
     % Assumes asymptomatic enter over infections period [0,ts+21]
-        IDSL(jj)=(1-pA).*((1./tsv(jj)).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+q(jj)-1,R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),@(u)(u+q(jj)),inf))+pA.*((1./td(jj)).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+q(jj)-1,R0S,R0A,1,tsv(jj),0),0,td(jj),@(u)(u+q(jj)),inf));  
+        IDSL(jj)=(1-pA).*((1./ts).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+q(jj)-1,R0S,R0A,0,ts,tLv(jj),SelfIsolate),0,ts,@(u)(u+q(jj)),inf))+pA.*((1./td).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+q(jj)-1,R0S,R0A,1,ts,tLv(jj),0),0,td,@(u)(u+q(jj)),inf));  
 end
 
 save('TestingonEntryExit_OneDayDelay.mat');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% More Asymptomatic
+%% Less Asymptomatic
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 qt=[1:21]; % Quarantine durations consideredd
 
 SelfIsolate=1; % Self-isolation
-tsvt=[1:0.1:21]; % vecotor for the incbation periods to be integrated over
+tLt=[1.9 2.9 3.9]; % vecotor for the incbation periods to be integrated over
 
 % Allcoate memory for output
-IDS=zeros(length(tsvt),length(qt)); % Assumes asymptomatic enter during incubation period
-IDSL=zeros(length(tsvt),length(qt)); % Assumes asymptomatic enter over infections period [0,ts+21]
+IDSL=zeros(length(tLt),length(qt)); % Assumes asymptomatic enter over infections period [0,ts+21]
 
 % Get Basline parameters
-[~,~,R0] = BaselineParameters(tsvt(1)); % Does not matter here what ts is fed in 
-pA=0.226; % adjust for more asymptomatic cases 
-
-[q,tsv]=meshgrid(qt,tsvt); % Create a mesh grid of the paramters being changes
+[~,~,R0,ts] = BaselineParameters(tLt(1)); % Does not matter here what ts is fed in 
+pA=0.226;
+[q,tLv]=meshgrid(qt,tLt); % Create a mesh grid of the paramters being changes
 q=q(:); % Vectorize the matrix
-tsv=tsv(:); % Vectorize the matrix
-IDS=IDS(:); % Vectorize the matrix
+tLv=tLv(:); % Vectorize the matrix
 IDSL=IDSL(:); % Vectorize the matrix
 
-td=tsv+20; % Asymptomatic increase 21 days from symptom onset
+td=ts+20; % Asymptomatic increase 21 days from symptom onset
 
 R0S=R0; % Set R0 for symptomatic
 R0A=R0; % Set R0 for asymptomatic
-R0A=R0;
 
-parfor jj=1:4221
-        % Assumes asymptomatic enter during incubation period
-        IDS(jj)=(1./tsv(jj)).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+q(jj)-1,R0S,R0A,pA,tsv(jj),SelfIsolate),0,tsv(jj),@(u)(u+q(jj)),inf);   
+parfor jj=1:63 
     % Assumes asymptomatic enter over infections period [0,ts+21]
-        IDSL(jj)=(1-pA).*((1./tsv(jj)).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+q(jj)-1,R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),@(u)(u+q(jj)),inf))+pA.*((1./td(jj)).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+q(jj)-1,R0S,R0A,1,tsv(jj),0),0,td(jj),@(u)(u+q(jj)),inf));  
+        IDSL(jj)=(1-pA).*((1./ts).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+q(jj)-1,R0S,R0A,0,ts,tLv(jj),SelfIsolate),0,ts,@(u)(u+q(jj)),inf))+pA.*((1./td).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+q(jj)-1,R0S,R0A,1,ts,tLv(jj),0),0,td,@(u)(u+q(jj)),inf));  
 end
 
 save('TestingonEntryExit_pA=226_OneDayDelay.mat');

@@ -1,45 +1,28 @@
-% Produces the plots for quarnatine and contact tracing with an incubation period of 8.29 days
-% and Poisson distribution
+% Produces the plots for quarnatine with an incubation period of 8.29 days
+% and pA=22.6%
 clear;
 clc;
 close all;
 
-Risk=0; %Poisson
-load('ImpactQuarantine.mat');
-IDSNT=reshape(IDSL,length(tsvt),length(qt));
-IDSNT=IDSNT(:,2:end);
-load('TestingonEntry.mat');
-IDSTE=reshape(IDSL,length(tsvt),length(qt));
-IDSTE=IDSTE(:,2:end);
-load('TestingonExit_OneDayDelay.mat');
-IDSTX=reshape(IDSL,length(tsvt),length(qt));
+Risk=1; % Negative Binomial
+tL=2.9; %baseline incubation period
+load('ImpactQuarantine_pA=226.mat');
+IDSNT=IDSL(tLv==tL);
+q=q(tLv==tL);
+IDSNT=IDSNT(q>0)';
+load('TestingonEntry_pA=226.mat');
+IDSTE=IDSL(tLv==tL);
+q=q(tLv==tL);
+IDSTE=IDSTE(q>0)';
+load('TestingonExit_pA=226_OneDayDelay.mat');
+IDSTX=IDSL(tLv==tL)';
+load('TestingonEntryExit_pA=226_OneDayDelay.mat');
+IDSTEX=IDSL(tLv==tL)';
 
-load('TestingonEntryExit_OneDayDelay.mat');
-IDSTEX=reshape(IDSL,length(tsvt),length(qt));
-
-tsv=tsvt;
-
-[f1]=RiskChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,tsv,qt,0,Risk);
-
-print(f1,'FigureS24','-dpng','-r600');
-
-clear;
-clc;
-close all;
-Risk=0; %Poisson
-load('ContactTracing_IndexInfect_Contact.mat');
-IDSNT=reshape(RTot,length(tsvt),length(qt));
-IDSNT=IDSNT(:,2:end);
-load('ContactTracing_IndexInfect_Contact_Test_Entry.mat');
-IDSTE=reshape(RTot,length(tsvt),length(qt));
-IDSTE=IDSTE(:,2:end);
-load('ContactTracing_IndexInfect_Contact_Test_Exit_OneDayDelay.mat');
-IDSTX=reshape(RTot,length(tsvt),length(qt));
-load('ContactTracing_IndexInfect_Contact_Test_Entry_and_Exit_OneDayDelay.mat');
-IDSTEX=reshape(RTot,length(tsvt),length(qt));
-
-tsv=tsvt;
-
-[f1]=RiskChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,tsv,qt,0,Risk);
+[f1]=RiskChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,qt,Risk);
 
 print(f1,'FigureS25','-dpng','-r600');
+
+[f1]=FigureChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,qt);
+
+print(f1,'FigureS24','-dpng','-r600');

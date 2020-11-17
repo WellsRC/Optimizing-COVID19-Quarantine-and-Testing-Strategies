@@ -1,24 +1,14 @@
-function  [fig1]=FigureChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,tsv,q,PD)
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% What probability density function to use for the incubatinop period
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-if(PD==0)
-    p=PDFavgIncubation(tsv,tsv(2)-tsv(1));
-else
-    p=PDFavgIncubation_Alt(tsv,tsv(2)-tsv(1));
-end
+function  [fig1]=FigureChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,q)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Calculations
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Expected number of secondary infctions
-IDSNT=round(p*IDSNT,3);
-IDSTE=round(p*IDSTE,3);
-IDSTX=round(p*IDSTX,3);
-IDSTEX=round(p*IDSTEX,3);
+IDSNT=round(IDSNT,3);
+IDSTE=round(IDSTE,3);
+IDSTX=round(IDSTX,3);
+IDSTEX=round(IDSTEX,3);
 
  CC=[hex2rgb('#F5BE41');hex2rgb('#2D4262');hex2rgb('#31A9BB');hex2rgb('#BBCF4A')];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

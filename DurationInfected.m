@@ -1,6 +1,14 @@
-function tau = DurationInfected(t,IncubationI,ts)
-%DURATIONINFECTED Summary of this function goes here
-%   Detailed explanation goes here
-tau = TimeInfection(ts-t,IncubationI,ts);
+function tau = DurationInfected(t,IncubationI,ts,tL)
+%DURATIONINFECTED returns the distbution of how long they have been
+%infected
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+% Input
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% t - time
+% IncubationI - AUC of r(t) during the incubation period
+% tL - duration of the latent period
+
+tau = TimeInfection(ts-t,IncubationI,ts,tL);
 end
 
