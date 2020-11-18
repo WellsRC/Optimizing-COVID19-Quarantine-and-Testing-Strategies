@@ -10,6 +10,8 @@ This repository contains codes and data used to simulate and analyze COVID-19 qu
 
 The model code is written in MATLAB and results are saved as MATLAB data files (extension .mat), with plots also being constructed in MATLAB. As MATLAB is not an open-source software/programming language, a compatible code that can be run using GNU Octave can be found in the directory named Octave in the repository.
 
+Nov 18, 2020: The Octave code has not been updated yet with the revisions
+
 ## OS System requirements
 The codes developed here are tested on Windows operating system (Windows 10 Home: 64-bit). However as Matlab and Octave are available for most operating systems, codes should run on Mac OSX and Linux as well.
 
