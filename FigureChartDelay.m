@@ -4,7 +4,9 @@ function  [fig1]=FigureChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,q)
 % Calculations
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Expected number of secondary infctions
+% Expected number of secondary infctions (Rounding as this is what is
+% presented in the Table and want consistency in terms of the equivilant
+% strategies)
 IDSNT=round(IDSNT,3);
 IDSTE=round(IDSTE,3);
 IDSTX=round(IDSTX,3);
@@ -58,7 +60,7 @@ for ii=1:length(q)
     Test_Entry_Exit(ii)=q(md); % Record duration of quarantine
 end
 
-T2 = table(No_Testing,Test_Entry,Test_Exit,Test_Entry_Exit);
+%T2 = table(No_Testing,Test_Entry,Test_Exit,Test_Entry_Exit);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generate Figure

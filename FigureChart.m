@@ -7,7 +7,8 @@ function  [fig1]=FigureChart(IDSNT,IDSTE,IDSTX,IDSTEX,q)
 
 % Average probability of onward transmisison
 
-% Expected number of secondary infctions
+% Expected number of secondary infctions (Rounding as this is what is
+% presented in the Table and want consistency in terms of the equivilant
 IDSNT=round(IDSNT,3);
 IDSTE=round(IDSTE,3);
 IDSTX=round(IDSTX,3);
