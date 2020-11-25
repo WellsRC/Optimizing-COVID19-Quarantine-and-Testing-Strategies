@@ -1,27 +1,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-% Panels E and F w/ prevlaence
+% Computes the probability of post-quanrantine transmisison for a cohort
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 clear;
 close all;
 clc;
-
+tL=2.9; % Baseline latetn period
 load('TestingonEntry.mat');
-IDSTE=reshape(IDSL,length(tsvt),length(qt));
-
-IDSTE=IDSTE(:,2:end);
+IDSTE=IDSL(tLv==tL);
+q=q(tLv==tL);
+IDSTE=IDSTE(q>0);
 load('TestingonExit_OneDayDelay.mat');
-IDSTX=reshape(IDSL,length(tsvt),length(qt));
-
+IDSTX=IDSL(tLv==tL);
 load('TestingonEntryExit_OneDayDelay.mat');
-IDSTEX=reshape(IDSL,length(tsvt),length(qt));
+IDSTEX=IDSL(tLv==tL);
 
-tsv=tsvt;
 
-p=PDFavgIncubation(tsvt,tsvt(2)-tsvt(1));
-
-TE=p*Probability_Onward(IDSTE,1);
-TEX=p*Probability_Onward(IDSTEX,1);
-TX=p*Probability_Onward(IDSTX,1);
+TE=Probability_Onward(IDSTE,1);
+TEX=Probability_Onward(IDSTEX,1);
+TX=Probability_Onward(IDSTX,1);
 
 TEd=[ 0 0 0 0];
 TEXd=[ 0 0 0 0];

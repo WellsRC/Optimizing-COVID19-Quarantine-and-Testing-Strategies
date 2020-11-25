@@ -34,6 +34,8 @@ if(ii==2)
     set(gca,'tickdir','out','YTick',[0:0.005:0.035],'YTickLabel',{'0','0.5','1.0','1.5','2.0','2.5','3.0','3.5'},'XTick',xx,'Yminortick','on','XTickLabel',{'Entry only \newline      ( )',['11 days \newline (' char(8722) ',  )'],'Entry \newline  ( )',[' 96 hrs \newline (' char(8722) ',  )'],['11 days \newline(' char(8722) ',' char(8722) ',  )']},'LineWidth',2,'Fontsize',16)
     % xtickangle(45);
     ylim([0 0.035]);
+    text(1.25,0.035,'April 11 - June 24','Fontsize',18,'HorizontalAlignment','center');
+    text(3,0.035,'June 25 - August 26','Fontsize',18,'HorizontalAlignment','center');
     ylabel('Positivity rate (%)','Fontsize',18);
     text(2.44,-0.0106,'Entry and Exit','Fontsize',16)
     xlabel('Time of testing','Fontsize',18,'Position',[2.25,-0.012,-1]);
@@ -61,7 +63,9 @@ else
     end
     set(gca,'tickdir','out','YTick',[0:0.005:0.035],'XTick',[1 2 2.5],'YTickLabel',{'0','0.5','1.0','1.5','2.0','2.5','3.0','3.5'},'Yminortick','on','XTickLabel',{'Entry only \newline      ( )','Entry \newline   ( )',[' 96 hrs \newline (' char(8722) ',  )']},'LineWidth',2,'Fontsize',16)
     % xtickangle(45);
-    ylim([0 0.035]);
+    ylim([0 0.035]);    
+    text(1,0.035,'April 11 - August 12','Fontsize',18,'HorizontalAlignment','center');
+    text(2.25,0.035,'August 13 - August 26','Fontsize',18,'HorizontalAlignment','center');
     ylabel('Positivity rate (%)','Fontsize',18);
     text(2.01,-0.0106,'Entry and Exit','Fontsize',16)
     xlabel('Time of testing','Fontsize',18,'Position',[1.75,-0.012,-1]);

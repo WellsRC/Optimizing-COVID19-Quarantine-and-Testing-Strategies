@@ -1,19 +1,19 @@
 clear;
 
-%pobj=parpool(20);
+pobj=parpool(20);
 
 q=[0:21];
 
 SelfIsolate=1; % Self-isolation
-tsvt=[1:0.1:21];
+tLt=[1.9 2.9 3.9];
 
 [qmtemp,dtmtemp]=meshgrid(q,q);
 qm=qmtemp(qmtemp>=dtmtemp);
 dtm=dtmtemp(qmtemp>=dtmtemp);
 N=length(qm);
-RT=zeros(length(tsvt),length(qm));
-RAT=zeros(length(tsvt),length(qm));
-IDSL=zeros(length(tsvt),length(qm));
+RT=zeros(length(tLt),length(qm));
+RAT=zeros(length(tLt),length(qm));
+IDSL=zeros(length(tLt),length(qm));
 
 RT=RT(:);
 RAT=RAT(:);
@@ -21,26 +21,27 @@ IDSL=IDSL(:);
 IncubationI=zeros(size(RT));
 PreI=zeros(size(RT));
 
-[qmm,tsv]=meshgrid(qm,tsvt);
-[dtmm,~]=meshgrid(dtm,tsvt);
+[qmm,tLv]=meshgrid(qm,tLt);
+[dtmm,~]=meshgrid(dtm,tLt);
 
-tsv=tsv(:);
+tLv=tLv(:);
 qmm=qmm(:);
 dtmm=dtmm(:);
 
-td=tsv+20;
 
 for jj=1:length(PreI)    
-    [pA,IncubationI(jj),R0] = BaselineParameters(tsv(jj));
+    [pA,IncubationI(jj),R0,ts] = BaselineParameters(tLv(jj));
     PreI(jj)=R0.*IncubationI(jj);
 end
 
+td=ts+20;
+
 R0S=R0;
 R0A=R0;
-for jj=1:50853
-        IDSL(jj)=(1-pA).*((1./tsv(jj)).*dblquad(@(u,t)InfectiousnessfromInfectionTestingEntry(t,u+dtmm(jj),R0S,R0A,0,tsv(jj),SelfIsolate),0,tsv(jj),@(u)(u+qmm(jj)),inf,'RelTol',1e-8,'AbsTol',1e-13))+pA.*((1./td(jj)).*dblquad(@(u,t)InfectiousnessfromInfectionTestingEntry(t,u+dtmm(jj),R0S,R0A,1,tsv(jj),0),0,td(jj),@(u)(u+qmm(jj)),inf,'RelTol',1e-8,'AbsTol',1e-13));  
-        RT(jj)=dblquad(@(u,t)(DurationInfected(u,IncubationI(jj),tsv(jj)).*InfectiousnessfromInfectionTestingEntry(t+u,u+dtmm(jj),R0S,R0A,pA,tsv(jj),SelfIsolate)),0,tsv(jj),qmm(jj),inf,'RelTol',1e-8,'AbsTol',1e-13);       
-        RAT(jj)=(1./quadv(@(u)(InfectiousnessfromInfection(u,R0,R0,1,tsv(jj),0)),tsv(jj),inf)).*dblquad(@(u,t)(InfectiousnessfromInfection(u,R0S,R0A,1,tsv(jj),0).*InfectiousnessfromInfectionTestingEntry(t+u,u+dtmm(jj),R0S,R0A,1,tsv(jj),0)),0,td(jj),tsv(jj)+qmm(jj),inf,'RelTol',1e-8,'AbsTol',1e-13);       
+parfor jj=1:759
+        IDSL(jj)=(1-pA).*((1./ts).*dblquad(@(u,t)InfectiousnessfromInfectionTestingEntry(t+u,u+dtmm(jj),R0S,R0A,0,ts,tLv(jj),SelfIsolate),0,ts,qmm(jj),inf))+pA.*((1./td).*dblquad(@(u,t)InfectiousnessfromInfectionTestingEntry(t+u,u+dtmm(jj),R0S,R0A,1,ts,tLv(jj),0),0,td,qmm(jj),inf));  
+        RT(jj)=dblquad(@(u,t)(DurationInfected(u,IncubationI(jj),ts,tLv(jj)).*InfectiousnessfromInfectionTestingEntry(t+u,u+dtmm(jj),R0S,R0A,pA,ts,tLv(jj),SelfIsolate)),0,ts,qmm(jj),inf);       
+        RAT(jj)=(1./quad(@(u)(InfectiousnessfromInfection(u,R0,R0,1,ts,tLv(jj),0)),ts,inf)).*dblquad(@(u,t)(InfectiousnessfromInfection(u,R0S,R0A,1,ts,tLv(jj),0).*InfectiousnessfromInfectionTestingEntry(t+u,u+dtmm(jj),R0S,R0A,1,ts,tLv(jj),0)),ts,inf,qmm(jj),inf);       
 end
 
 RTot=(PreI.*RT+pA.*R0.*RAT)./(PreI+pA.*R0);

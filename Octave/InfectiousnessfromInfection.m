@@ -1,4 +1,4 @@
-function R = InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate)
+function R = InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tL,SelfIsolate)
 %InfectiousnessfromInfection returns the infectiousness at time t given total virus
 %shed and R0
 
@@ -6,12 +6,10 @@ function R = InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate)
 % Input
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % t - time post-infection
-% tvsS - total virus shed symptomatic
-% tvsA - total virus shed asypmptomatic
 % R0S - Reproductive number symptomatic
 % R0A - Reproductive number asymptomatic
 % pA - proportion asymptomatic
-% ts - time from infection to symptom onset (i.e. incubation period)
+% tL - duration of the latent period
 % SelfIsolate - 0 no self-isolation of symptomatic otherwise self-isolation
 % upon symptom onset
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -24,14 +22,14 @@ function R = InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Computation for asymptomatic
-RA=R0A.*ViralShedding_Asymptomatic(t,ts);
+RA=R0A.*ViralShedding_Asymptomatic(t,tL);
 
 % Computation for symptomatic
 if(SelfIsolate==0)
-    RS=R0S.*ViralShedding_Symptomatic(t,ts);
+    RS=R0S.*ViralShedding_Symptomatic(t,tL);
 else
     RS=zeros(size(t));
-    RS(t<=ts)=R0S.*ViralShedding_Symptomatic(t(t<=ts),ts);
+    RS(t<=ts)=R0S.*ViralShedding_Symptomatic(t(t<=ts),tL);  % Non-Zero if yet to exhibit symptoms
 end
 
 %Combine asymptmatic and symptomaic 

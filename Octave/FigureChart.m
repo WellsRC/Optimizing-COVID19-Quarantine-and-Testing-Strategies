@@ -1,14 +1,5 @@
-function  [fig1]=FigureChart(IDSNT,IDSTE,IDSTX,IDSTEX,tsv,q,PD)
+function  [fig1]=FigureChart(IDSNT,IDSTE,IDSTX,IDSTEX,q)
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% What probability density function to use for the incubatinop period
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-if(PD==0)
-    p=PDFavgIncubation(tsv,tsv(2)-tsv(1));
-else
-    p=PDFavgIncubation_Alt(tsv,tsv(2)-tsv(1));
-end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Calculations
@@ -16,11 +7,12 @@ end
 
 % Average probability of onward transmisison
 
-% Expected number of secondary infctions
-IDSNT=round(p*IDSNT,3);
-IDSTE=round(p*IDSTE,3);
-IDSTX=round(p*IDSTX,3);
-IDSTEX=round(p*IDSTEX,3);
+% Expected number of secondary infctions (Rounding as this is what is
+% presented in the Table and want consistency in terms of the equivilant
+IDSNT=round(IDSNT,3);
+IDSTE=round(IDSTE,3);
+IDSTX=round(IDSTX,3);
+IDSTEX=round(IDSTEX,3);
 
  CC=[hex2rgb('#F5BE41');hex2rgb('#2D4262');hex2rgb('#31A9BB');hex2rgb('#BBCF4A')];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -136,7 +128,7 @@ xlim([-0.5 3.5]);
 set(gca,'LineWidth',2,'tickdir','out','XTick',[0 1 2 3],'YTick',q,'XTickLabel',{'No testing','Entry','Exit','Entry and Exit'},'Fontsize',16,'YDir','reverse','XAxisLocation','top');
 box off;
 xlabel('Testing strategy','Fontsize',18);
-ylabel('Duration quarantine','Fontsize',18);
+ylabel('Duration of quarantine','Fontsize',18);
 
 caxis([-0.5 10.5])
 hh=colorbar;

@@ -4,19 +4,18 @@ clear;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Baseline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-tsv=linspace(1,21,1001);
+tLv=[1.9 2.9 3.9];
 t=linspace(0,60,5001);
-ID=zeros(length(tsv),5001);
-RNS=zeros(length(tsv),1);
+ID=zeros(length(tLv),5001);
+RNS=zeros(length(tLv),1);
 
-IDS=zeros(length(tsv),5001);
-RS=zeros(length(tsv),1);
+IDS=zeros(length(tLv),5001);
+RS=zeros(length(tLv),1);
 
-RPre=zeros(length(tsv),1);
+RPre=zeros(length(tLv),1);
 
-for jj=1:length(tsv)
-    ts=tsv(jj);
-    [pA,IncubationI,R0] = BaselineParameters(ts);
+for jj=1:length(tLv)
+    [pA,IncubationI,R0,ts] = BaselineParameters(tLv(jj));
     
     R0S=R0;
     R0A=R0;
@@ -26,35 +25,34 @@ for jj=1:length(tsv)
     % ID=zeros(101,1);
     SelfIsolate=0; % No self-isolation
 
-    ID(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate);
-    RNS(jj)=quadv(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate),0,inf);
+    ID(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate);
+    RNS(jj)=quad(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate),0,inf);
 
     SelfIsolate=1; % Self-isolation of symptomatics
-    IDS(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate);
-    RS(jj)=quadv(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate),0,inf);
+    IDS(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate);
+    RS(jj)=quad(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate),0,inf);
     
-    RPre(jj)=quadv(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate),0,ts);
+    RPre(jj)=quad(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate),0,ts);
 end
 
 save('ImpactSelfIsolation_R0=2_5.mat');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% R0=2; pA=0.179
+% R0=2; 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clear;
-tsv=linspace(1,21,1001);
+tLv=[1.9 2.9 3.9];
 t=linspace(0,60,5001);
-ID=zeros(length(tsv),5001);
-RNS=zeros(length(tsv),1);
+ID=zeros(length(tLv),5001);
+RNS=zeros(length(tLv),1);
 
-IDS=zeros(length(tsv),5001);
-RS=zeros(length(tsv),1);
+IDS=zeros(length(tLv),5001);
+RS=zeros(length(tLv),1);
 
-RPre=zeros(length(tsv),1);
+RPre=zeros(length(tLv),1);
 
-for jj=1:length(tsv)
-    ts=tsv(jj);
-    [pA,IncubationI,~] = BaselineParameters(ts);
+for jj=1:length(tLv)
+    [pA,IncubationI,~,ts] = BaselineParameters(tLv(jj));
     R0=2;
     R0S=R0;
     R0A=R0;
@@ -64,14 +62,14 @@ for jj=1:length(tsv)
     % ID=zeros(101,1);
     SelfIsolate=0; % No self-isolation
 
-    ID(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate);
-    RNS(jj)=quadv(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate),0,inf);
+    ID(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate);
+    RNS(jj)=quad(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate),0,inf);
 
     SelfIsolate=1; % Self-isolation of symptomatics
-    IDS(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate);
-    RS(jj)=quadv(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate),0,inf);
+    IDS(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate);
+    RS(jj)=quad(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate),0,inf);
     
-    RPre(jj)=quadv(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate),0,ts);
+    RPre(jj)=quad(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate),0,ts);
 end
 
 save('ImpactSelfIsolation_R0=2.mat');
@@ -80,20 +78,18 @@ save('ImpactSelfIsolation_R0=2.mat');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R0=2.5; pA=0.226
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-tsv=linspace(1,21,1001);
+tLv=[1.9 2.9 3.9];
 t=linspace(0,60,5001);
-ID=zeros(length(tsv),5001);
-RNS=zeros(length(tsv),1);
+ID=zeros(length(tLv),5001);
+RNS=zeros(length(tLv),1);
 
-IDS=zeros(length(tsv),5001);
-RS=zeros(length(tsv),1);
+IDS=zeros(length(tLv),5001);
+RS=zeros(length(tLv),1);
 
-RPre=zeros(length(tsv),1);
+RPre=zeros(length(tLv),1);
 
-for jj=1:length(tsv)
-    ts=tsv(jj);
-    [~,IncubationI,R0] = BaselineParameters(ts);
+for jj=1:length(tLv)
+    [~,IncubationI,R0,ts] = BaselineParameters(tLv(jj));
     pA=0.226;
     R0S=R0;
     R0A=R0;
@@ -103,14 +99,14 @@ for jj=1:length(tsv)
     % ID=zeros(101,1);
     SelfIsolate=0; % No self-isolation
 
-    ID(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate);
-    RNS(jj)=quadv(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate),0,inf);
+    ID(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate);
+    RNS(jj)=quad(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate),0,inf);
 
     SelfIsolate=1; % Self-isolation of symptomatics
-    IDS(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate);
-    RS(jj)=quadv(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate),0,inf);
+    IDS(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate);
+    RS(jj)=quad(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate),0,inf);
     
-    RPre(jj)=quadv(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate),0,ts);
+    RPre(jj)=quad(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate),0,ts);
 end
 
 save('ImpactSelfIsolation_R0=2_5_pA=226.mat');
@@ -118,22 +114,21 @@ save('ImpactSelfIsolation_R0=2_5_pA=226.mat');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % R0=2.0; pA=0.226
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-tsv=linspace(1,21,1001);
+tLv=[1.9 2.9 3.9];
 t=linspace(0,60,5001);
-ID=zeros(length(tsv),5001);
-RNS=zeros(length(tsv),1);
+ID=zeros(length(tLv),5001);
+RNS=zeros(length(tLv),1);
 
-IDS=zeros(length(tsv),5001);
-RS=zeros(length(tsv),1);
+IDS=zeros(length(tLv),5001);
+RS=zeros(length(tLv),1);
 
-RPre=zeros(length(tsv),1);
+RPre=zeros(length(tLv),1);
 
-for jj=1:length(tsv)
-    ts=tsv(jj);
-    [~,IncubationI,~] = BaselineParameters(ts);
-    R0=2;
+for jj=1:length(tLv)
+    [~,IncubationI,~,ts] = BaselineParameters(tLv(jj));
     pA=0.226;
+    R0=2;
+    
     R0S=R0;
     R0A=R0;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -142,14 +137,14 @@ for jj=1:length(tsv)
     % ID=zeros(101,1);
     SelfIsolate=0; % No self-isolation
 
-    ID(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate);
-    RNS(jj)=quadv(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate),0,inf);
+    ID(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate);
+    RNS(jj)=quad(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate),0,inf);
 
     SelfIsolate=1; % Self-isolation of symptomatics
-    IDS(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate);
-    RS(jj)=quadv(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate),0,inf);
+    IDS(jj,:)=InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate);
+    RS(jj)=quad(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate),0,inf);
     
-    RPre(jj)=quadv(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,SelfIsolate),0,ts);
+    RPre(jj)=quad(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tLv(jj),SelfIsolate),0,ts);
 end
 
 save('ImpactSelfIsolation_R0=2_pA=226.mat');

@@ -1,10 +1,12 @@
-function [pA,IncubationI,R0] = BaselineParameters(ts)
+function [pA,IncubationI,R0,ts] = BaselineParameters(tL)
 %BASELINEPARAMETERS 
 
 pA=0.308;
 
 R0=2.5;
 
-IncubationI=quadv(@(t)ViralShedding_Symptomatic(t,ts),0,ts);
+ts=8.29;
+
+IncubationI=quad(@(t)ViralShedding_Symptomatic(t,tL),0,ts);
 end
 
