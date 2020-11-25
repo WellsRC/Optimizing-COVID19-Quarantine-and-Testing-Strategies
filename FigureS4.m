@@ -45,7 +45,7 @@ figure('units','normalized','outerposition',[0 0 1 1]);
 subplot('Position',[0.05,0.740628166160081,0.434327731092437,0.231925025329279]);
 p2=plot([1:21],DTest,'-o','color',[0.7 0.7 0.7],'linewidth',2,'MarkerFaceColor',[0.7 0.7 0.7],'Markersize',7); hold on
 p1=plot([1:21],DTestDelay,'-ok','linewidth',2,'MarkerFaceColor','k','Markersize',7); hold on
-legend([p1 p2],{'One day delay in obtaining test result','Negligible delay in obtaining test result'},'Position',[0.259628857316381,0.776306916251781,0.220588229518353,0.059270515086803])
+legend([p1 p2],{'One-day delay in obtaining test result','Negligible delay in obtaining test result'},'Position',[0.259628857316381,0.776306916251781,0.220588229518353,0.059270515086803])
 legend boxoff
 xlabel('Duration of quarantine','Fontsize',20);
 ylabel({'Optimal day','to conduct test'},'Fontsize',20);

@@ -62,7 +62,7 @@ R0A=R0; % Set R0 for asymptomatic
 
 parfor jj=1:63
     % Assumes asymptomatic enter over infections period [0,ts+21]
-        IDSL(jj)=(1-pAv(jj)).*((1./ts).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+qt-1,R0S,R0A,0,ts,tLv(jj),SelfIsolate),0,ts,@(u)(u+qt),inf))+pAv(jj).*((1./td).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+qt-1,R0S,R0A,1,ts,tLv(jj),0),0,td,@(u)(u+qt),inf));  
+        IDSL(jj)=(1-pAv(jj)).*((1./ts).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+4,R0S,R0A,0,ts,tLv(jj),SelfIsolate),0,ts,@(u)(u+qt),inf))+pAv(jj).*((1./td).*integral2(@(u,t)InfectiousnessfromInfectionTestingEntryExit(t,u,u+4,R0S,R0A,1,ts,tLv(jj),0),0,td,@(u)(u+qt),inf));  
 end
 
-save('VaryPA_TestingonEntryExit_7day_OneDayDelay.mat');
+save('VaryPA_TestingonEntryExit_7day_96hrs.mat');
