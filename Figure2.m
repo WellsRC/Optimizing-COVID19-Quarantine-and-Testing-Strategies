@@ -89,3 +89,4 @@ end
 end
 
 print(gcf,'Figure2','-dpng','-r600');
+print(gcf,'Figure2','-depsc','-r600');

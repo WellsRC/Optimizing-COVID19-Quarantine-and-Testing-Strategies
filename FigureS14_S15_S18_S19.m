@@ -7,6 +7,9 @@ close all;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Uniform entry
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Risk=1;
+
 load('ImpactQuarantine.mat');
 tL=3.9;
 IDSNT=IDSL(tLv==tL);
@@ -22,7 +25,7 @@ load('TestingonEntryExit_OneDayDelay.mat');
 IDSTEX=IDSL(tLv==tL)';
 
 %Plot the corresponding SI figures
-[f1]=RiskChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,qt,1);
+[f1]=RiskChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,qt,Risk);
 
 print(f1,'FigureS15','-dpng','-r600');
 
@@ -38,6 +41,7 @@ close all;
 % Contact tracing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Risk=1;
 
 tL=3.9; % Baseline latent period
 load('ContactTracing_IndexInfect_Contact.mat');
@@ -55,7 +59,7 @@ IDSTEX=RTot(tLv==tL)';
 
 
     
-[f1]=RiskChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,qt,1);
+[f1]=RiskChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,qt,Risk);
 
 print(f1,'FigureS19','-dpng','-r600');
 

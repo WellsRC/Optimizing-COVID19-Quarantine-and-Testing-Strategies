@@ -4,7 +4,7 @@ function  [fig1]=FigureChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,q)
 % Calculations
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Expected number of secondary infctions
+% Expected number of secondary infctions (Rounding for usein the the table)
 IDSNT=round(IDSNT,3);
 IDSTE=round(IDSTE,3);
 IDSTX=round(IDSTX,3);
@@ -38,37 +38,34 @@ ESI=IDSNT(f14);
 % 
 % T = table(Testing_Strategy,Duration_Quarantine,Expected_Infections);
 
+% 
+% % Vectors for the duration of quarantine equivialent to no testing
+% No_Testing=q';
+% Test_Entry=zeros(size(No_Testing));
+% Test_Exit=zeros(size(No_Testing));
+% Test_Entry_Exit=zeros(size(No_Testing));
+% 
+% for ii=1:length(q)
+%     % Expected number of secodnary infections post quaratnine NO TESTING
+%     ESI=IDSNT(ii);
+%     md=find(IDSTE<=ESI,1); % Find the equivilent or better with testing on entry (i.e. fewer expected cases)
+%     Test_Entry(ii)=q(md); % Record duration of quarantine
+%      
+%     md=find(IDSTX<=ESI,1);% Find the equivilent or better with testing on exit (i.e. fewer expected cases)
+%     Test_Exit(ii)=q(md); % Record duration of quarantine
+%     
+%     md=find(IDSTEX<=ESI,1); % Find the equivilent or better with testing on entry and exit (i.e. fewer expected cases)
+%     Test_Entry_Exit(ii)=q(md); % Record duration of quarantine
+% end
 
-% Vectors for the duration of quarantine equivialent to no testing
-No_Testing=q';
-Test_Entry=zeros(size(No_Testing));
-Test_Exit=zeros(size(No_Testing));
-Test_Entry_Exit=zeros(size(No_Testing));
-
-for ii=1:length(q)
-    % Expected number of secodnary infections post quaratnine NO TESTING
-    ESI=IDSNT(ii);
-    md=find(IDSTE<=ESI,1); % Find the equivilent or better with testing on entry (i.e. fewer expected cases)
-    Test_Entry(ii)=q(md); % Record duration of quarantine
-     
-    md=find(IDSTX<=ESI,1);% Find the equivilent or better with testing on exit (i.e. fewer expected cases)
-    Test_Exit(ii)=q(md); % Record duration of quarantine
-    
-    md=find(IDSTEX<=ESI,1); % Find the equivilent or better with testing on entry and exit (i.e. fewer expected cases)
-    Test_Entry_Exit(ii)=q(md); % Record duration of quarantine
-end
-
-T2 = table(No_Testing,Test_Entry,Test_Exit,Test_Entry_Exit);
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Generate Figure
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-fig1=figure('units','normalized','outerposition',[0 0 0.65 1]);
+%T2 = table(No_Testing,Test_Entry,Test_Exit,Test_Entry_Exit);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Generate Panel A: SEcondary infections
+fig1=figure('units','normalized','outerposition',[0 0 0.5 1]);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-S1=subplot('Position',[0.0575 0.01 0.38 0.915]);
+% Generate Panel B: Probability of onward transmission
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+S1=subplot('Position',[0.08 0.01 0.8 0.915]);
 
 
 load('Colormap2.mat');
@@ -141,50 +138,9 @@ hh.Label.FontSize=18;
 
 colormap(S1,CCC);
 
-text(-1.08,-0.92,'A','Fontsize',32,'FontWeight','bold');
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Generate Panel B: Equiv strategies
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-S2=subplot('Position',[0.5825 0.01 0.38 0.915]);
 
-load('CCTest.mat');
-cc=cc(2:end,:);
-
-for ii=1:21
-    % Testing on entry
-    ss=1;
-    patch(ss+[-0.5 0.5 0.5 -0.5],ii+[-0.5 -0.5 0.5 0.5], cc(Test_Entry(ii),:)); hold on
-    text(ss,ii,num2str(round((Test_Entry(ii)),2)),'HorizontalAlignment','center','VerticalAlignment','middle','FontWeight','bold','FontSize',14);
-    % Testing on exit
-    ss=2;
-    patch(ss+[-0.5 0.5 0.5 -0.5],ii+[-0.5 -0.5 0.5 0.5], cc(Test_Exit(ii),:)); hold on
-    text(ss,ii,num2str(round((Test_Exit(ii)),2)),'HorizontalAlignment','center','VerticalAlignment','middle','FontWeight','bold','FontSize',14);
-    % Testing on entry and exit
-    ss=3;
-    patch(ss+[-0.5 0.5 0.5 -0.5],ii+[-0.5 -0.5 0.5 0.5], cc(Test_Entry_Exit(ii),:)); hold on
-    text(ss,ii,num2str(round((Test_Entry_Exit(ii)),2)),'HorizontalAlignment','center','VerticalAlignment','middle','FontWeight','bold','FontSize',14);
-end
-ylim([0.5 21.5]);
-xlim([0.5 3.5]);
-set(gca,'LineWidth',2,'tickdir','out','XTick',[1 2 3],'YTick',q,'XTickLabel',{'Entry','Exit','Entry and Exit'},'Fontsize',16,'YDir','reverse','XAxisLocation','top');
-box off;
-xlabel('Testing strategy','Fontsize',18);
-ylabel('Duration of quarantine with no testing','Fontsize',18);
-
-
-text(0.0033,-0.92,'B','Fontsize',32,'FontWeight','bold');
-
-caxis([0.5 21.5])
-hh=colorbar;
-hh.Ticks=[1:21];
-hh.Label.String={'Equivalent duration of quarantine to no testing'};
-hh.Label.Rotation=270;
-hh.Label.Position=[4.5 10.5 0];
-hh.Label.FontSize=18;
-
-colormap(S2,cc);
 
 end
 

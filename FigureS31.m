@@ -26,14 +26,14 @@ AS=InfectiousnessfromInfection(t,R0,R0,1,ts,tL,0)./integral(@(u)(Infectiousnessf
 
 plot(t,AS,'k',t,(1./td).*ones(1001,1),'r','LineWidth',2)
 xlim([ts td]);
-ylim([0 0.25]);
+ylim([0 0.35]);
 legend({'Contact tracing (infected the index)','Uniform asymptomatic'})
 legend boxoff;
 xlabel({'Day post-infection of asymptomatic contact who infected','the symptomatic index'},'Fontsize',18);
 ylabel('Density','Fontsize',18);
 box off;
 set(gca,'LineWidth',2,'tickdir','out','Fontsize',16,'XTick',[8:28],'XMinorTick','on','Yminortick','on','YTick',[0:0.05:0.35]);
-text(-2.600+ts,0.25,'B','Fontsize',32,'Fontweight','bold');
+text(-2.600+ts,0.3455,'B','Fontsize',32,'Fontweight','bold');
 
 
 print(gcf,'FigureS31','-dpng','-r600');

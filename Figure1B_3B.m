@@ -59,8 +59,9 @@ ylim([0 8]);
 xlim([0.5 14]);
 set(gca,'LineWidth',2,'tickdir','out','XTick',[1:21],'Fontsize',18,'YTick',[0:1:10]);
 box off;
-text(-1.00858328718326,7.559903293978241,'B','Fontsize',32,'FontWeight','bold','VerticalAlignment','baseline');
+text(-1.706,7.559903293978241,'B','Fontsize',32,'FontWeight','bold','VerticalAlignment','baseline');
 print(gcf,'Figure1B','-dpng','-r600');
+print(gcf,'Figure1B','-depsc','-r600');
 
 figure('units','normalized','outerposition',[0.05 0.05 0.5 0.6]);
 subplot('Position',[0.14,0.145,0.84,0.84]);
@@ -76,5 +77,6 @@ ylim([0 8]);
 xlim([0.5 14]);
 set(gca,'LineWidth',2,'tickdir','out','XTick',[1:21],'Fontsize',18,'YTick',[0:1:10]);
 box off;
-text(-1.00858328718326,7.559903293978241,'B','Fontsize',32,'FontWeight','bold','VerticalAlignment','baseline');
+text(-1.706,7.559903293978241,'B','Fontsize',32,'FontWeight','bold','VerticalAlignment','baseline');
 print(gcf,'Figure3B','-dpng','-r600');
+print(gcf,'Figure3B','-depsc','-r600');

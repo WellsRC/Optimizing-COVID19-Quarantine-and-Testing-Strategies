@@ -66,8 +66,9 @@ set(gca,'LineWidth',2,'tickdir','out','XTick',[0:14],'Fontsize',18,'Yminortick',
      xlabel('Duration of quarantine','Fontsize',20);
 text(-1.00858328718326,0.5612,'A','Fontsize',32,'FontWeight','bold','VerticalAlignment','baseline');
     print(gcf,'Figure3A','-dpng','-r600');
+    print(gcf,'Figure3A','-depsc','-r600');
     
-[f1]=RiskChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,qt,1);
+[f1]=RiskChartDelay(IDSNT,IDSTE,IDSTX,IDSTEX,qt,Risk);
 
 print(f1,'FigureS8','-dpng','-r600');
 
