@@ -147,15 +147,15 @@ for ii=0:21
     % Testing on entry
     ss=1;
     patch(ss+[-0.5 0.5 0.5 -0.5],ii+[-0.5 -0.5 0.5 0.5], cc(Test_Entry(ii+1)+1,:)); hold on
-    text(ss,ii,num2str(round((Test_Entry(ii+1)),2)),'HorizontalAlignment','center','VerticalAlignment','middle','FontWeight','bold','FontSize',14);
+    text(ss,ii,num2str(Test_Entry(ii+1)),'HorizontalAlignment','center','VerticalAlignment','middle','FontWeight','bold','FontSize',14);
     % Testing on exit
     ss=2;
     patch(ss+[-0.5 0.5 0.5 -0.5],ii+[-0.5 -0.5 0.5 0.5], cc(Test_Exit(ii+1)+1,:)); hold on
-    text(ss,ii,num2str(round((Test_Exit(ii+1)),2)),'HorizontalAlignment','center','VerticalAlignment','middle','FontWeight','bold','FontSize',14);
+    text(ss,ii,num2str(Test_Exit(ii+1)),'HorizontalAlignment','center','VerticalAlignment','middle','FontWeight','bold','FontSize',14);
     % Testing on entry and exit
     ss=3;
     patch(ss+[-0.5 0.5 0.5 -0.5],ii+[-0.5 -0.5 0.5 0.5], cc(Test_Entry_Exit(ii+1)+1,:)); hold on
-    text(ss,ii,num2str(round((Test_Entry_Exit(ii+1)),2)),'HorizontalAlignment','center','VerticalAlignment','middle','FontWeight','bold','FontSize',14);
+    text(ss,ii,num2str(Test_Entry_Exit(ii+1)),'HorizontalAlignment','center','VerticalAlignment','middle','FontWeight','bold','FontSize',14);
 end
 ylim([-0.5 21.5]);
 xlim([0.5 3.5]);
