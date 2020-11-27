@@ -22,7 +22,7 @@ pAv=pAv(:); % Vectorize the matrix
 tLv=tLv(:); % Vectorize the matrix
 IDSL=IDSL(:); % Vectorize the matrix
 
-td=ts+20; % Asymptomatic increase 21 days from symptom onset
+td=ts+20; % Asymptomatic increase 20 days from symptom onset
 
 R0S=R0; % Set R0 for symptomatic
 R0A=R0; % Set R0 for asymptomatic
@@ -55,7 +55,7 @@ pAv=pAv(:); % Vectorize the matrix
 tLv=tLv(:); % Vectorize the matrix
 IDSL=IDSL(:); % Vectorize the matrix
 
-td=ts+20; % Asymptomatic increase 21 days from symptom onset
+td=ts+20; % Asymptomatic increase 20 days from symptom onset
 
 R0S=R0; % Set R0 for symptomatic
 R0A=R0; % Set R0 for asymptomatic

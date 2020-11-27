@@ -43,7 +43,7 @@ for ii=1:length(tLv)
         PreI(ii)=R0.*IncubationI(ii);
 end
 
-td=ts+20; % Asymptomatic increase 21 days from symptom onset
+td=ts+20; % Asymptomatic increase 20 days from symptom onset
 
 R0S=R0; % Set R0 for symptomatic
 R0A=R0; % Set R0 for asymptomatic
@@ -107,7 +107,7 @@ for ii=1:length(tLv)
         PreI(ii)=R0.*IncubationI(ii);
 end
 pA=0.226; % reduce the number of asymptomatics
-td=ts+20; % Asymptomatic increase 21 days from symptom onset
+td=ts+20; % Asymptomatic increase 20 days from symptom onset
 
 R0S=R0; % Set R0 for symptomatic
 R0A=R0; % Set R0 for asymptomatic

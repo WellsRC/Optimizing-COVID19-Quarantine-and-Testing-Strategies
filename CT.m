@@ -42,7 +42,7 @@ for ii=1:length(tLv)
         [pA,IncubationI(ii),R0,ts] = BaselineParameters(tLv(ii));
         PreI(ii)=R0.*IncubationI(ii); % Need to scale by R0 as it only returns the proportion of infections during incubation period
 end
-td=ts+20; % Asymptomatic increase 21 days from symptom onset
+td=ts+20; % Asymptomatic increase 20 days from symptom onset
 
 R0S=R0; % Set R0 for symptomatic
 R0A=R0; % Set R0 for asymptomatic
@@ -106,7 +106,7 @@ for ii=1:length(tLv)
         [~,IncubationI(ii),R0,ts] = BaselineParameters(tLv(ii));
         PreI(ii)=R0.*IncubationI(ii); % Need to scale by R0 as it only returns the proportion of infections during incubation period
 end
-td=ts+20; % Asymptomatic increase 21 days from symptom onset
+td=ts+20; % Asymptomatic increase 20 days from symptom onset
 pA=0.226;% Decrease the proportion of asymptomatic infections
 
 R0S=R0; % Set R0 for symptomatic
