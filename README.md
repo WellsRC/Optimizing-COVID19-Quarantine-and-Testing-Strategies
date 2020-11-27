@@ -10,8 +10,6 @@ This repository contains codes and data used to simulate and analyze COVID-19 qu
 
 The model code is written in MATLAB and results are saved as MATLAB data files (extension .mat), with plots also being constructed in MATLAB. As MATLAB is not an open-source software/programming language, a compatible code that can be run using GNU Octave can be found in the directory named Octave in the repository.
 
-Nov 18, 2020: The Octave code has not been updated yet with the revisions
-
 ## OS System requirements
 The codes developed here are tested on Windows operating system (Windows 10 Home: 64-bit). However as Matlab and Octave are available for most operating systems, codes should run on Mac OSX and Linux as well.
 
@@ -30,8 +28,6 @@ To generate the Figures and output of the calculations, select a script from Fig
 ## Analysis scripts
 ### IS
 Generates the infectivity profile for R0=2.5 and R0=2.0, as well as pA=30.8% and pA=22.6%.
-### ISens
-Generates the sensitivity profile since the time of infection.
 ### IPQ
 Runs the analysis for uniform entry into quarantine with 30.8% infections being asymptomatic, and 22.6% being asymptomatic, for quarantine durations from 0 to 21 days with no testing and R0=2.5
 ### ITE
@@ -66,21 +62,26 @@ Runs the analysis for uniform entry into quarantine for quarantine durations of 
 Returns the estimates for the benefit of extending the quarantine from three-day and test on entry to a five/seven day quarantine with testing on entry and testing 96 hrs follwoing first test. Also, calcualtes the probability of post-quarantine transmission for the cases detected on exit.
 ### DayTest
 Computes the number of secodnary infections for quarantine durations for 0 to 21 days, as well as evaluting the number of secondary infections if tested on day X of quanratine. 
-### EstimatingInfectioncurves
-Estimates the shape paramters for the infectivity profile curves fit to 12.3 days, 5 days, 8 days, and 11 days for the incubation period.
+### AIC_St
+Runs the fitting and AIC comparison for the sensitivity function
 ## Figures
 ### FigureGen 
 Generates all figures in the main text and the supplementary material
-### Figure 1
-Constructs the line graph of the probability of post-quarantine transmission for quarantine for the scenarios of i) no testing, ii) texting on entry, iii) testing on exit, and iv) testing on both entry and exit for an incubation period of 8.29 days (95% credible interval of 7.69–8.92 days), as well as an incubation period of 5.2 days (95% credible interval of 3.8–6.7 days). 
+### Figure1A
+Constructs the line graph of the probability of post-quarantine transmission for quarantine for the scenarios of i) no testing, ii) texting on entry, iii) testing on exit, and iv) testing on both entry and exit for an incubation period of 8.29 days . 
 
 This script also generates Figure S2 (Secondary number of cases post-quarantine) and Figure S3 (Probability of post-quarantine transmission).
-### Figure 2
+### Figure2
 Constructs the bar graph of the positivity for the testing data from the two site for the different strategies (testing only on entry versus testing on entry and exit).
-### Figure 3
-Constructs the line graph of the probability of post-quarantine transmission for contact tracing for the scenarios of i) no testing, ii) texting on entry, iii) testing on exit, and iv) testing on both entry and exit for an incubation period of 8.29 days (95% credible interval of 7.69–8.92 days), as well as an incubation period of 5.2 days (95% credible interval of 3.8–6.7 days). 
-
+### Figure =3A
+Constructs the line graph of the probability of post-quarantine transmission for contact tracing for the scenarios of i) no testing, ii) texting on entry, iii) testing on exit, and iv) testing on both entry and exit for an incubation period of 8.29 days  
 This script also generates Figure S7 and Figure S8.
+
+### Figure1B_3B
+Constructs the line graph of the optimal day to test for uniform entry (Figure 1B) and contact tracing (Figure 3B) under the assumption of one day delay to test result and a negligible delay to test result.
+
+### Figure 4
+Plots the optimal day to test for a known time of exposure under the assumption of one day delay to test result and a negligible delay to test result for quarantine periods of 14,7,5, and 3 days.
 ### FigureS1
 Plots the infectivity profile for R_0=2.5 and 30.8% infections being asymptomatic,  R_0=2.5 and 22.6% infections being asymptomatic, R_0=2.0 and 30.8% infections being asymptomatic, and R_0=2.0 and 22.6% infections being asymptomatic.
 ### FigureS4
@@ -92,52 +93,50 @@ Plots the probability of post-quarantine transmission for quarantine for a three
 ### FigureS9_S10
 This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine through contact tracing.
 ### FigureS11
-This script generates the infectivity profile for the 8.29 day incubation period and the 5.2 day incubation period
-### FigureS12_S13
-This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine not through contact tracing and for the incubation period of 5.2 days.
-### FigureS14_S15
-This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine through contact tracing and for the incubation period of 5.2 days.
-### FigureS16_S17
-This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine not through contact tracing, with no delay between the test sample and test result (i.e. delay is negligible in receiveing test result)
-### FigureS18_S19
-This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine through contact tracing, with no delay between the test sample and test result (i.e. delay is negligible in receiveing test result
+This script generates the infectivity profile for the 8.29 day incubation period and a 2.9, 1.9 and 3.9 latent period
+### FigureS12_S13_S16_S17
+This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine uniformly and through contact tracing for a latent period of 1.9 days.
+### FigureS14_S15_S18_S19
+This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine uniformly and through contact tracing for a latent period of 3.9 days.
 ### FigureS20_S21
-This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine not through contact tracing, with 22.6% infections being asymptomatic
+This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine not through contact tracing, with no delay between the test sample and test result (i.e. delay is negligible in receiveing test result)
 ### FigureS22_S23
+This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine through contact tracing, with no delay between the test sample and test result (i.e. delay is negligible in receiveing test result
+### FigureS24_S25
+This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine not through contact tracing, with 22.6% infections being asymptomatic
+### FigureS26_S27
 This script generates the figures for the secondary number of cases post-quarantine and probability of post-quarantine transmission when entering quarantine through contact tracing, with 22.6% infections being asymptomatic
+### FigureS28
+Generates the plot for the temporal diagnostic sensitivity
 ### FigureS24_S25
 This script generates the figures for the probability of post-quarantine transmission when entering quarantine not through contact tracing, as well as through contact tracing, assuming transmisison post-quarantine is Poisson distributed
+### FigureS30
+Generates the plot for pdf in which individuals enter quarantine uniformly versus contact tracing
 ## Functions
 ### BaselineParameters
 Returns the baseline parameters for the analysis
 ### DurationInfected
 The duration in which a contact of a symptomatic index case has been infected for
 ### FigureChart
-Generates the Figure chart for the Secondary infections post quarantine and equivialent duration of quaratnine with testing to a duration of quarantine with no testing, assuming delay from sample to result is irrelevant
+Generates the Figure chart for the Secondary infections post quarantine with and without testing, assuming delay from sample to result is irrelevant
 ### FigureChartDelay
-Generates the Figure chart for the Secondary infections post quarantine and equivialent duration of quaratnine with testing to a duration of quarantine with no testing, assuming one day delay from sample to result
+Generates the Figure chart for the Secondary infections post quarantine with and without testing, assuming one day delay from sample to result
 ### InfectiousnessfromInfection
 The temporal number of secondary infections post-quarantine given no testing 
 ### InfectiousnessfromInfectionTestingEntry
 The temporal number of secondary infections post-quarantine given single test time (does both entry/exit)
 ### InfectiousnessfromInfectionTestingEntryExit
 The temporal number of secondary infections post-quarantine given timing of two tests
-### InfectiousnessfromInfectionTestingMultiple
-The temporal number of secondary infections post-quarantine given timing of multiple tests
-### PDFavgIncubation
-The distribution of the incubation period of 8.29 days
-### PDFavgIncubation_Alt
-The distribution of the incubation period of 5.2 days
 ### Probability_Onward
 The probability of psot-quarantine transmission given how secondafy cases are distributed
 ### RiskChart
-Generates the Figure chart for the probabaility of post quarantine trasnmisison, assuming delay from sample to result is negligible
+Generates the Figure chart for the probabaility of post quarantine trasnmisison, assuming delay from sample to result is negligible. It also generates the the equivialent duration of quaratnine with testing to a duration of quarantine with no testing
 ### RiskChartDelay
-Generates the Figure chart for the probabaility of post quarantine trasnmisison, assuming one day delay from sample to result
+Generates the Figure chart for the probabaility of post quarantine trasnmisison, assuming one day delay from sample to result. . It also generates the the equivialent duration of quaratnine with testing to a duration of quarantine with no testing
 ### SensitivityTimeSamp
-Temporal sensitiviity of the RT-PCR assay starting one day from symptom onset for an incubatino period of 7.76 days
+Temporal sensitiviity of the RT-PCR assay with respect to time (dependent on the incubation period)
 ### SensitivityvsViralLoad
-The sensitiviity of the RT-PCR assay given the viral load (sigmoidal Hill function)
+The sensitiviity of the RT-PCR assay given the viral load 
 ### TimeInfection
 The time in which a contact was infected from a symptomatic index case
 ### ViralShedding_Asymptomatic
@@ -149,11 +148,3 @@ The infectity profile of an symptomatic individual (independent of R0)
 The data for region A
 ### TableData_B
 The data for region B
-### Digitized_Incubationperiod
-The infectivity profile digitized for 12.3 days
-### Digitized_Incubationperiod_5days
-The infectivity profile digitized for 5 days
-### Digitized_Incubationperiod_8days
-The infectivity profile digitized for 8 days
-### Digitized_Incubationperiod_11days
-The infectivity profile digitized for 11 days
