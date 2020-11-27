@@ -1,6 +1,6 @@
 # Optimizing COVID-19 quarantine and testing strategies
- Chad R. Wells*, Jeffrey P. Townsend*, Abhishek Pandey, Gary Krieger, 
-Seyed M. Moghadas, Burton Singer, Robert H. McDonald, Alison P. Galvani 
+ Chad R. Wells*, Jeffrey P. Townsend*, Abhishek Pandey, 
+Seyed M. Moghadas, Gary Krieger, Burton Singer, Robert H. McDonald, Meagan C. Fitzpatrick, Alison P. Galvani 
 
 Copyright (C) <2020>, Chad R. Wells et. al. All rights reserved. Released under the GNU General Public License (GPL)
 
