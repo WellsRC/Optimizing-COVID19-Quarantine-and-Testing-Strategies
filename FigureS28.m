@@ -22,9 +22,9 @@ ylabel('Diagnostic sensitivity','Fontsize',18);
 legend([p1 p3],{'Sensitivity function',['Data']},'Fontsize',14);
 legend boxoff;
 ylim([0 1]);
-xlim([ts-0.5 30]);
-set(gca,'LineWidth',2,'tickdir','out','Fontsize',16,'XTick',[0:2:30],'XMinorTick','on','Yminortick','on','YTick',[0:0.1:1]);
-text(5.76,0.969543147208122,'A','Fontsize',32,'FontWeight','bold');
+xlim([ts-0.5 30+ts]);
+set(gca,'LineWidth',2,'tickdir','out','Fontsize',16,'XTick',[0:2:38],'XMinorTick','on','Yminortick','on','YTick',[0:0.1:1]);
+text(4.915836341756918,0.977138083916983,'A','Fontsize',32,'FontWeight','bold');
 
 
 
@@ -58,8 +58,8 @@ ylabel('Diagnostic sensitivity','Fontsize',18);
 legend([p1 p2 p3],{'Latent period 2.9 days','Latent period 1.9 days','Latent period 3.9 days'},'Fontsize',14);
 legend boxoff;
 ylim([0 1]);
-xlim([0 30]);
-set(gca,'LineWidth',2,'tickdir','out','Fontsize',16,'XTick',[-14:2:30],'XMinorTick','on','Yminortick','on','YTick',[0:0.1:1]);
-text(-3,0.969543147208122,'B','Fontsize',32,'FontWeight','bold');
+xlim([0 30+ts]);
+set(gca,'LineWidth',2,'tickdir','out','Fontsize',16,'XTick',[-14:2:38],'XMinorTick','on','Yminortick','on','YTick',[0:0.1:1]);
+text(-3.599001203369433,0.97,'B','Fontsize',32,'FontWeight','bold');
 
 print(gcf,'FigureS28','-dpng','-r600');
