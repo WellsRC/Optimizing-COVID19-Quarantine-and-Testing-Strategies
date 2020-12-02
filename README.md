@@ -124,7 +124,7 @@ Generates the Figure chart for the Secondary infections post quarantine with and
 ### InfectiousnessfromInfection
 The temporal number of secondary infections post-quarantine given no testing 
 ### InfectiousnessfromInfectionTestingEntry
-The temporal number of secondary infections post-quarantine given single test time (does both entry/exit)
+The temporal number of secondary infections post-quarantine given single test time (does both entry/exit). Entry and exit can both be done using this function as it only requires the time in quarantine in which the test is done
 ### InfectiousnessfromInfectionTestingEntryExit
 The temporal number of secondary infections post-quarantine given timing of two tests
 ### Probability_Onward
