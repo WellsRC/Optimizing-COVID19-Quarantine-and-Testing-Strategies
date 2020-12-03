@@ -14,8 +14,6 @@ mm=zeros(12,1);
 fval=zeros(12,1);
 n=length(xt);
 X=[];
-ts=12.3;
-td=20;
 for ii=0:11    
     % Note: Not shifting by tS here so need to account for the shift in the
     % function when implementing
