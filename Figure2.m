@@ -43,9 +43,6 @@ if(ii==2)
     box off;
     xlim([0.5 4]);
     plot(2.*ones(1,101),linspace(0,0.035,101),'-.','color',[0.6 0.6 0.6],'LineWidth',2);
-    
-    text(2.76,0.0306202531,'Positivity rate on entry/follow-up','Fontsize',15)
-    text(2.76,0.02836,'Positivity rate on exit','color',hex2rgb('#D70026'),'Fontsize',15)
 else
     b=bar([1 2 2.5], yy,'k','LineStyle','none'); hold on
     xx=[1 2 2.5];
@@ -76,8 +73,7 @@ else
     box off;
     xlim([0.5 3]);
     plot(1.5.*ones(1,101),linspace(0,0.035,101),'-.','color',[0.6 0.6 0.6],'LineWidth',2);
-    text(2.36875,0.0306202531,'Positivity rate on entry','Fontsize',15)
-    text(2.368749999999999,0.02836,'Positivity rate on exit','color',hex2rgb('#D70026'),'Fontsize',15)
+    
 end
 if(ii==2)
     text(0.9525,-0.005230149597238,'+','FontWeight','bold','Fontsize',16);
