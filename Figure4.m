@@ -17,7 +17,7 @@ qin=[14 7 5 3];
         dtmmt=dayTestv(q==qin(kk));
         DayERQ=DayERIv(q==qin(kk));
         maxDayERQ=max(DayERQ);
-        for ii=1:maxDayERQ
+        for ii=1:maxDayERQ %% DOES NOT INCLUDE ENTRY AT TIME ZERO!!
             temp=zeros(qin(kk)+1,1);
             fd=find(DayERQ==ii);
             % No delay
@@ -29,7 +29,7 @@ qin=[14 7 5 3];
         end
 
         % Delay
-        for ii=1:maxDayERQ
+        for ii=1:maxDayERQ %% DOES NOT INCLUDE ENTRY AT TIME ZERO!!
             temp=zeros(qin(kk),1);
             fd=find(DayERQ==ii);
             % No delay
@@ -43,6 +43,7 @@ qin=[14 7 5 3];
         subplot('Position',[0.07+(0.557-0.07).*rem(kk-1,2) 0.56-0.48*floor((kk-1)/2) 0.43 0.40]);
 
         yytick=[0 0.01 0.05:0.1:0.45];
+        % PLOTING FROM DAY ONE (AS DAY ZERO NOT INCLUDED ABOVE)
         p2=plot([1:14],DTest(1:14),'-o','color',[0.7 0.7 0.7],'linewidth',2,'MarkerFaceColor',[0.7 0.7 0.7],'Markersize',7); hold on
         p1=plot([1:14],DTestDelay(1:14),'-ok','linewidth',2,'MarkerFaceColor','k','Markersize',7);
         if(kk==1)
