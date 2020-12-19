@@ -8,6 +8,8 @@ This repository contains codes and data used to simulate and analyze COVID-19 qu
 1. Entry into quarantine uniformly during the incubation period or the course of disease 
 2. Entry into quarantine through contact tracing
 
+Note: The code is set up for homogeneous transmission for symptomatic and asymptomatic individuals (i.e. R0_S=R0_A) for the purpose of the manuscript, and only partially set-up for heterogeneous transmission.
+
 The model code is written in MATLAB and results are saved as MATLAB data files (extension .mat), with plots also being constructed in MATLAB. As MATLAB is not an open-source software/programming language, a compatible code that can be run using GNU Octave can be found in the directory named Octave in the repository.
 
 ## OS System requirements
